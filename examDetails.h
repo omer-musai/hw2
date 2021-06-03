@@ -1,13 +1,17 @@
-#include <string>
 
+#include <string>
+#include <iostream>
+
+#define ROUNDED_HOUR_LIMIT 23
+#define MAX_DAYS 30
 #define MATAM_COURSE_NUM 234124
 #define MATAM_DAY 28
 #define MATAM_DURATION 3
 #define MATAM_HOUR 13
 #define MATAM_LINK "https://tinyurl.com/59hzps6m"
 
-
-
+namespace mtm
+{
 
 enum Month{
     JANUARY,
@@ -56,8 +60,13 @@ class ExamDetails
 
         //print operator
         friend std::ostream& operator<<(std::ostream& os, const ExamDetails& exam);
+
+        //exceptions
+        class InvalidDateException {};
+        class InvalidTimeException {};
+        class InvalidArgsException {};
         
 };
 
-//print operators must be defined as non_members
-std::ostream& operator<<(std::ostream& os, const ExamDetails& exam);
+
+}

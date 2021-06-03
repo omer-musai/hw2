@@ -5,18 +5,12 @@ template<class T>
 class SortedList
 {
     private:
-        class Node
+        typedef struct node_t
         {
-            private:
-                T value;
-                Node* next;
+            T data;
+            struct node_t* next;
            
-            public: 
-                Node(); //need to implement
-                ~Node();
-                Node(const Node& Node);
-     
-        };
+        } *Node;
 
         
     public:

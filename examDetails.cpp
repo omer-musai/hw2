@@ -1,12 +1,32 @@
 #include "examDetails.h"
 
 
+using namespace mtm;
 
-ExamDetails::ExamDetails(int course_number, Month month, int day, float hour, int duration, std::string link = "") : 
-    course_number(course_number), month(month), day(day), hour(hour), duration(duration), link(link)
-    {
-        //everything initialized
-    }
+ExamDetails::ExamDetails(int course_number, Month month, int day, float hour, int duration, std::string link = "")
+{
+        int rounded_hour = hour;
+
+        if(day <= 0 || day > MAX_DAYS || month < JANUARY || month > DECEMBER)
+        {
+            throw InvalidDateException();
+        }
+        if(rounded_hour < 0 || rounded_hour > ROUNDED_HOUR_LIMIT)
+        {
+            throw InvalidTimeException();
+        }
+        if(course_number < 0 || duration < 0) //not quite sure if they meant that course_number should be natural number and not integer
+        {
+            throw InvalidArgsException();
+        }
+
+        this->course_number = course_number;
+        this->day = day;
+        this->month = month;
+        this->hour = hour;
+        this->duration = duration;
+        this->link = link;
+}
 
 
 ExamDetails::ExamDetails(const ExamDetails& exam) : 
@@ -74,9 +94,10 @@ bool ExamDetails::operator<(const ExamDetails& exam) const
     return (this->month < exam.month);
 }
 
-std::ostream& operator<<(std::ostream& os, const ExamDetails& exam)
+
+std::ostream& mtm::operator<<(std::ostream& os, const ExamDetails& exam)
 {
-    string minutes = "00";
+    std::string minutes = "00";
     int rounded_hour = exam.hour;
     
     if(exam.hour > rounded_hour)
@@ -84,10 +105,10 @@ std::ostream& operator<<(std::ostream& os, const ExamDetails& exam)
         minutes = "30";
     }
 
-    os << endl
-        << "Course Number: " << exam.course_number << endl
-        << "Time: " << exam.day << "." << exam.month << "at" << rounded_hour << ":" << minutes << endl
-        << "Duration: "<< exam.duration << ":" << "00" << endl
+    os << "\n"
+        << "Course Number: " << exam.course_number << "\n"
+        << "Time: " << exam.day << "." << exam.month << "at" << rounded_hour << ":" << minutes << "\n"
+        << "Duration: "<< exam.duration << ":" << "00" << "\n"
         << "Zoom Link: " << exam.link;
 
     return os;
