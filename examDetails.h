@@ -3,7 +3,7 @@
 #include <iostream>
 
 #define ROUNDED_HOUR_LIMIT 23
-#define MAX_DAYS 30
+#define DAYS_IN_MONTH 30
 #define MATAM_COURSE_NUM 234124
 #define MATAM_DAY 28
 #define MATAM_DURATION 3

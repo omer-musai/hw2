@@ -7,7 +7,7 @@ ExamDetails::ExamDetails(int course_number, Month month, int day, float hour, in
 {
         int rounded_hour = hour;
 
-        if(day <= 0 || day > MAX_DAYS || month < JANUARY || month > DECEMBER)
+        if(day <= 0 || day > DAYS_IN_MONTH || month < JANUARY || month > DECEMBER)
         {
             throw InvalidDateException();
         }
@@ -76,7 +76,9 @@ void ExamDetails::setLink(std::string link)
    
 int ExamDetails::operator-(const ExamDetails& exam) const
 {
-    return (this->day - exam.day); 
+    int month_diff = this->month - exam.month;
+
+    return(this->day - exam.day + (month_diff * DAYS_IN_MONTH));
 }
 
 bool ExamDetails::operator<(const ExamDetails& exam) const
