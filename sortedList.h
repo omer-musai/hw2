@@ -14,6 +14,7 @@ class SortedList
 
         Node list;
          
+        Node findPreviousElementPosition(Node current, T element);
     public:
         SortedList(); 
         ~SortedList();
@@ -28,24 +29,7 @@ class SortedList
         SortedList apply(T function(T type)); //need to use another template for this 1
 
 
-        class const_iterator
-        {
-            private:
-                const SortedList* sorted_list;
-                int index;
-                
-                //user doesn't have access to the standard constructor  NOT SURE IF WE ASKED TO IMPLEMENT OR JUST USE THE "const_iterator();"
-                const_iterator(const SortedList* sorted_list, int index);
-
-            public:
-                
-                const_iterator(const const_iterator& iterator);
-                const_iterator& operator=(const const_iterator& iterator);
-                ~const_iterator();
-                void operator++(); //throw out_of_range if iterator points to end of list
-                bool operator==(const const_iterator& iterator);
-                const const_iterator& operator*();
-        };
+        class const_iterator;
         
         const_iterator begin() const;
         const_iterator end() const;   
@@ -53,6 +37,32 @@ class SortedList
         void remove(const_iterator iterator);
 
 };
+
+
+//class of the iterator
+template<class T>
+class SortedList<T>::const_iterator
+{
+    private:
+        Node current;
+        
+        //user doesn't have access to the standard constructor  NOT SURE IF WE ASKED TO IMPLEMENT OR JUST USE THE "const_iterator();"
+        const_iterator(Node current);
+
+    public:
+                
+        const_iterator(const const_iterator& iterator);
+        const_iterator& operator=(const const_iterator& iterator);
+        ~const_iterator();
+        void operator++(); //throw out_of_range if iterator points to end of list
+        bool operator==(const const_iterator& iterator);
+        const Node& operator*();
+};
+       
+
+
+
+
 
 
 template<class T>
@@ -110,7 +120,25 @@ SortedList<T>& SortedList<T>::operator=(const SortedList<T>& sorted_list)
 template<class T>
 void SortedList<T>::insert(T element)
 {
+    Node new_node = new Node;
+    
+    new_node->data = element;
+    new_node->next = NULL;
 
+    Node previous = findPreviousElementPosition(this->list, element);
+
+    if(previous == NULL)//there is no previous
+    {
+        new_node->next = this->list;
+        
+        this->list = new_node;
+        return;
+    }
+
+    new_node->next = previous->next;
+    previous->next = new_node;
+    
+        
 }
 
 template<class T>
@@ -144,38 +172,72 @@ SortedList<T> SortedList<T>::apply(T function(T type)) //need to use another tem
 
 }
 
-template<class T>
-SortedList<T>::const_iterator::const_iterator(const const_iterator& iterator)
-{
 
+
+template<class T>
+SortedList<T>::const_iterator::const_iterator(const const_iterator& iterator) : current(iterator.current)
+{
 }
 
 template<class T>
 SortedList<T>::const_iterator& SortedList<T>::const_iterator::operator=(const const_iterator& iterator)
 {
+    if(this == &iterator)
+    {
+        return *this;
+    }
 
+    this->current = iterator->current;
+    return *this;
 }
 
 template<class T>
 SortedList<T>::const_iterator::~const_iterator()
 {
-
+  
 }
 
 template<class T>
-void SortedList<T>::const_iterator::operator++() //throw out_of_range if iterator points to end of list
+void SortedList<T>::const_iterator::operator++()
 {
-
+    if(current->next == NULL)
+    {
+        throw std::out_of_range;
+    }
+    current = current->next;
 }                
 
 template<class T>             
 bool SortedList<T>::const_iterator::operator==(const const_iterator& iterator)
 {
-
+    return (this->current == iterator->current)
 }
 
 template<class T>
-const SortedList<T>::const_iterator& SortedList<T>::const_iterator::operator*()
+const SortedList<T>::Node& SortedList<T>::const_iterator::operator*()
 {
+    const Node tmp = *current;
 
+    return &tmp;
+}
+
+template<class T>
+SortedList<T>::Node SortedList<T>::findPreviousElementPosition(Node current, T element)
+{
+    if(current->data > element)//element need to be first
+    {
+        return NULL;
+    }
+
+    while(current->next != NULL)
+    {
+        if(current->next->data > element)
+        {
+            return current;
+        }
+
+        current->next = current->next->next;
+    }
+
+    return current;
 }
