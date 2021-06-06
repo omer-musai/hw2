@@ -48,7 +48,7 @@ class SortedList<T>::const_iterator
         Node* current;
         
         //user doesn't have access to the standard constructor  NOT SURE IF WE ASKED TO IMPLEMENT OR JUST USE THE "const_iterator();"
-        const_iterator(Node current);
+        const_iterator(Node* current);
         friend class SortedList;
     public:
         const_iterator() = delete;
@@ -96,9 +96,15 @@ SortedList<T>& SortedList<T>::operator=(const SortedList<T>& sorted_list)
 
     freeList(this->list);
     
-   //IN PROCESS...
+    Node* current = sorted_list->list;
 
+    while(current != NULL)
+    {
+        this->insert(current->data);
 
+        current = current->next;
+    }
+    
     return *this;
 }
 
@@ -159,7 +165,7 @@ int SortedList<T>::length()
 template<class T>
 SortedList<T> SortedList<T>::filter(bool function(T type)) //need to use another template for this 1
 {
-
+    
 }
 
 template<class T>
@@ -167,6 +173,9 @@ SortedList<T> SortedList<T>::apply(T function(T type)) //need to use another tem
 {
 
 }
+
+template<class T>
+SortedList<T>::const_iterator::const_iterator(Node* current) : current(current) {}
 
 
 
@@ -189,7 +198,6 @@ SortedList<T>::const_iterator& SortedList<T>::const_iterator::operator=(const co
 template<class T>
 SortedList<T>::const_iterator::~const_iterator()
 {
-
 }
 
 template<class T>
@@ -247,14 +255,22 @@ SortedList<T>::Node* SortedList<T>::findPreviousElementPosition(const T element)
 template<class T>
 SortedList<T>::const_iterator SortedList<T>::begin() const
 {
-
+    return const_iterator(this->list);
 }
 
 
 template<class T>
 SortedList<T>::const_iterator SortedList<T>::end() const
 {
+     
+    Node* current = this->list;
 
+    while(current->next != NULL)
+    {
+        current = current->next;
+    }
+    
+    return const_iterator(current);
 }
 
 template<class T>
