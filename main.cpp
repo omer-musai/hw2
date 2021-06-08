@@ -13,8 +13,8 @@ inline int increment(int value)
 {
     return value + 1;
 }
-
-/*int main()
+/*
+int main()
 {
     //Attempt to destroy an empty list:
     {
@@ -94,8 +94,8 @@ inline int increment(int value)
     cout << "\n" << even_list.length() << endl;
 
     return 0;
-}*/
-
+}
+*/
 using std::string;
 string getLen(string str)
 {

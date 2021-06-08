@@ -95,11 +95,10 @@ namespace mtm
             minutes = "30";
         }
 
-        os << "\n"
-           << "Course Number: " << exam.course_number << "\n"
-           << "Time: " << exam.day << "." << exam.month << "at" << rounded_hour << ":" << minutes << "\n"
+        os << "Course Number: " << exam.course_number << "\n"
+           << "Time: " << exam.day << "." << exam.month << " at " << rounded_hour << ":" << minutes << "\n"
            << "Duration: "<< exam.duration << ":" << "00" << "\n"
-           << "Zoom Link: " << exam.link;
+           << "Zoom Link: " << exam.link << std::endl;
 
         return os;
     }
