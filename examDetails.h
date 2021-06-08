@@ -5,6 +5,7 @@
 #define ROUNDED_HOUR_LIMIT 23
 #define DAYS_IN_MONTH 30
 #define MATAM_COURSE_NUM 234124
+#define MATAM_MONTH 7
 #define MATAM_DAY 28
 #define MATAM_DURATION 3
 #define MATAM_HOUR 13
@@ -12,61 +13,42 @@
 
 namespace mtm
 {
+    class ExamDetails
+    {
+        private:
+            int course_number;
+            int day;
+            int month;
+            float hour;
+            int duration;
+            std::string link;
 
-enum Month{
-    JANUARY,
-    FEBRUARY,
-    MARCH,
-    APRIL,
-    MAY,
-    JUNE,
-    JULY,
-    AUGUST,
-    SEPTEMBER,
-    OCTOBER,
-    NOVEMBER,
-    DECEMBER
-};
+        public:
+            //constructors
+            ExamDetails(int course_number, int month, int day, float hour, int duration, const std::string& link = "");
+            ExamDetails(const ExamDetails& exam) = default;
 
+            //destructor
+            ~ExamDetails() = default;
+            //assignment operator (should release old resources and allocate new ones)
+            ExamDetails& operator=(const ExamDetails& exam);
 
-class ExamDetails
-{
-    private:
-        int course_number;
-        int day;
-        Month month;
-        float hour;
-        int duration;
-        std::string link;
+            //methods
+            static ExamDetails makeMatamExam();
+            std::string getLink() const;
+            void setLink(const std::string& link);
 
-    public:
-        //constructors
-        ExamDetails(int course_number, Month month, int day, float hour, int duration, std::string link = "");
-        ExamDetails(const ExamDetails& exam); //that's the copy constructor
-        
-        //destructor
-        ~ExamDetails();
-        //assignment operator (should release old resources and allocate new ones)
-        ExamDetails& operator=(const ExamDetails& exam);
+            //operators
+            int operator-(const ExamDetails& exam) const;
+            bool operator<(const ExamDetails& exam) const;
 
-        //methods
-        static ExamDetails makeMatamExam();    
-        std::string getLink();
-        void setLink(std::string link);
+            //print operator
+            friend std::ostream& operator<<(std::ostream& os, const ExamDetails& exam);
 
-        //operators
-        int operator-(const ExamDetails& exam) const;
-        bool operator<(const ExamDetails& exam) const;
+            //exceptions
+            class InvalidDateException : std::exception {};
+            class InvalidTimeException : std::exception {};
+            class InvalidArgsException : std::exception {};
 
-        //print operator
-        friend std::ostream& operator<<(std::ostream& os, const ExamDetails& exam);
-
-        //exceptions
-        class InvalidDateException {};
-        class InvalidTimeException {};
-        class InvalidArgsException {};
-        
-};
-
-
+    };
 }
