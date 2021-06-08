@@ -27,15 +27,14 @@ class SortedList
         int length() const;
 
         template<class C>
-        SortedList filter(C condition); //need to use another template for this 1
+        SortedList filter(C condition);
 
         template<class A>
-        SortedList apply(A action); //need to use another template for this 1
+        SortedList apply(A action);
 
 
         class const_iterator;
-        
-        //NOT SURE ABOUT THESE TWO
+
         const_iterator begin() const;
         const_iterator end() const;   
 
@@ -98,17 +97,9 @@ SortedList<T>& SortedList<T>::operator=(const SortedList<T>& sorted_list)
         return *this;
     }
 
+    Node* new_list = copyList(sorted_list.list);
     freeList(this->list);
-    this->list = nullptr;
-    
-    Node* current = sorted_list.list;
-
-    while(current != nullptr)
-    {
-        this->insert(current->data);
-
-        current = current->next;
-    }
+    this->list = new_list;
     
     return *this;
 }
@@ -172,7 +163,7 @@ int SortedList<T>::length() const
 
 template<class T>
 template<class C>
-SortedList<T> SortedList<T>::filter(C condition) //need to use another template for this 1
+SortedList<T> SortedList<T>::filter(C condition)
 {
     SortedList<T> new_list = SortedList<T>();
     for (SortedList<T>::const_iterator i = this->begin(); !(i == this->end()); ++i)
@@ -188,7 +179,7 @@ SortedList<T> SortedList<T>::filter(C condition) //need to use another template 
 
 template<class T>
 template<class A>
-SortedList<T> SortedList<T>::apply(A action) //need to use another template for this 1
+SortedList<T> SortedList<T>::apply(A action)
 {
     SortedList<T> new_list = SortedList<T>();
     for (SortedList<T>::const_iterator i = this->begin(); !(i == this->end()); ++i)
@@ -300,21 +291,23 @@ void SortedList<T>::freeList(Node* list)
 template<class T>
 typename SortedList<T>::Node* SortedList<T>::copyList(typename SortedList<T>::Node* list)
 {
-    typename SortedList<T>::Node* new_list = nullptr, end_ptr, new_node;
+    SortedList<T>::Node *new_list = nullptr, *end_ptr, *new_node;
 
     if (list != nullptr)
     {
-        new_list = new typename SortedList<T>::Node(list->data);
+        new_list = new SortedList<T>::Node(list->data);
         end_ptr = new_list;
+        list = list->next;
     }
 
     while (list != nullptr)
     {
         try
         {
-            new_node = new typename SortedList<T>::Node(list->data);
+            new_node = new SortedList<T>::Node(list->data);
             end_ptr->next = new_node;
             end_ptr = new_node;
+            list = list->next;
         }
         catch (std::exception& exception)
         {
