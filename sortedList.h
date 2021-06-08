@@ -10,13 +10,13 @@ class SortedList
 
             explicit Node(T data) : data(data), next(nullptr)
             {}
+            static void freeList(Node* list);
+            static Node* copyList(Node* list);
         };
 
         Node* list;
 
         Node* findPreviousElementPosition(const T element) const;
-        static void freeList(Node* list);
-        static Node* copyList(Node* list);
     public:
         SortedList(); 
         ~SortedList();
@@ -60,6 +60,7 @@ class SortedList<T>::const_iterator
         ~const_iterator() = default;
         void operator++(); //throw out_of_range if iterator points to end of list
         bool operator==(const const_iterator& iterator);
+        bool operator!=(const const_iterator& iterator);
         const T& operator*();
 };
        
@@ -72,13 +73,13 @@ SortedList<T>::SortedList() : list(nullptr) {}
 template<class T>
 SortedList<T>::~SortedList()
 {
-   freeList(list);
+   Node::freeList(list);
 }
 
 template<class T>
 SortedList<T>::SortedList(const SortedList<T>& sorted_list)
 {   
-    this->list = copyList(sorted_list.list);
+    this->list = Node::copyList(sorted_list.list);
 }
 
 
@@ -90,8 +91,8 @@ SortedList<T>& SortedList<T>::operator=(const SortedList<T>& sorted_list)
         return *this;
     }
 
-    Node* new_list = copyList(sorted_list.list);
-    freeList(this->list);
+    Node* new_list = Node::copyList(sorted_list.list);
+    Node::freeList(this->list);
     this->list = new_list;
     
     return *this;
@@ -159,7 +160,7 @@ template<class C>
 SortedList<T> SortedList<T>::filter(C condition)
 {
     SortedList<T> new_list = SortedList<T>();
-    for (SortedList<T>::const_iterator i = this->begin(); !(i == this->end()); ++i)
+    for (SortedList<T>::const_iterator i = this->begin(); i != this->end(); ++i)
     {
         if (condition(*i))
         {
@@ -175,7 +176,7 @@ template<class A>
 SortedList<T> SortedList<T>::apply(A action)
 {
     SortedList<T> new_list = SortedList<T>();
-    for (SortedList<T>::const_iterator i = this->begin(); !(i == this->end()); ++i)
+    for (SortedList<T>::const_iterator i = this->begin(); i != this->end(); ++i)
     {
         new_list.insert(action((*i)));
     }
@@ -218,6 +219,12 @@ template<class T>
 bool SortedList<T>::const_iterator::operator==(const const_iterator& iterator)
 {
     return (this->current == iterator.current);
+}
+
+template<class T>
+bool SortedList<T>::const_iterator::operator!=(const const_iterator& iterator)
+{
+    return !(this->operator==(iterator));
 }
 
 template<class T>
@@ -271,7 +278,7 @@ typename SortedList<T>::const_iterator SortedList<T>::end() const
 }
 
 template<class T>
-void SortedList<T>::freeList(Node* list)
+void SortedList<T>::Node::freeList(Node* list)
 {
     while (list != nullptr)
     {
@@ -282,7 +289,7 @@ void SortedList<T>::freeList(Node* list)
 }
 
 template<class T>
-typename SortedList<T>::Node* SortedList<T>::copyList(typename SortedList<T>::Node* list)
+typename SortedList<T>::Node* SortedList<T>::Node::copyList(typename SortedList<T>::Node* list)
 {
     SortedList<T>::Node *new_list = nullptr, *end_ptr, *new_node;
 
@@ -304,7 +311,7 @@ typename SortedList<T>::Node* SortedList<T>::copyList(typename SortedList<T>::No
         }
         catch (std::exception& exception)
         {
-            SortedList<T>::freeList(new_list);
+            SortedList<T>::Node::freeList(new_list);
             throw exception;
         }
     }
