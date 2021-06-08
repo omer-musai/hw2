@@ -3,7 +3,7 @@
 
 using namespace mtm;
 
-ExamDetails::ExamDetails(int course_number, Month month, int day, float hour, int duration, std::string link = "")
+ExamDetails::ExamDetails(int course_number, Month month, int day, float hour, int duration, std::string link)
 {
         int rounded_hour = hour;
 
