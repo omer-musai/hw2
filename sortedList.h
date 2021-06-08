@@ -240,7 +240,7 @@ typename SortedList<T>::Node* SortedList<T>::findPreviousElementPosition(const T
         return nullptr;
     }
 
-    if(list->data >= element)//element need to be first
+    if(!(list->data < element))//element need to be first
     {
         return nullptr;
     }
@@ -249,7 +249,7 @@ typename SortedList<T>::Node* SortedList<T>::findPreviousElementPosition(const T
 
     while(current != nullptr)
     {
-        if(current->data >= element)
+        if(!(current->data < element))
         {
             return previous;
         }
