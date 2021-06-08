@@ -78,14 +78,7 @@ SortedList<T>::~SortedList()
 template<class T>
 SortedList<T>::SortedList(const SortedList<T>& sorted_list)
 {   
-    Node* current = sorted_list.list;
-
-    while(current != nullptr)
-    {
-        this->insert(current->data);
-
-        current = current->next;
-    }
+    this->list = copyList(sorted_list.list);
 }
 
 
