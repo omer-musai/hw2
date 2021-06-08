@@ -14,8 +14,6 @@ inline int increment(int value)
     return value + 1;
 }
 
-inline int nthn(int value) {return value;}
-
 int main()
 {
     //Attempt to destroy an empty list:
@@ -37,14 +35,14 @@ int main()
     list_copy.insert(77);
 
     cout << "Original list:\n";
-    for (SortedList<int>::const_iterator i = list.begin(); i != list.end(); ++i)
+    for (SortedList<int>::const_iterator i = list.begin(); !(i == list.end()); ++i)
     {
         cout << (*i) << " ";
     }
     cout << "\n" << list.length() << "\n";
 
     cout << "\nlist_copy:\n";
-    for (SortedList<int>::const_iterator i = list_copy.begin(); i != list_copy.end(); ++i)
+    for (SortedList<int>::const_iterator i = list_copy.begin(); !(i == list_copy.end()); ++i)
     {
         cout << (*i) << " ";
     }
@@ -52,14 +50,14 @@ int main()
 
     cout << "\neven_list:\n";
     SortedList<int> even_list = list.filter(isEven);
-    for (SortedList<int>::const_iterator i = even_list.begin(); i != even_list.end(); ++i)
+    for (SortedList<int>::const_iterator i = even_list.begin(); !(i == even_list.end()); ++i)
     {
         cout << (*i) << " ";
     }
     cout << "\n" << even_list.length() << endl;
 
     cout << "\nOriginal list again (to ensure it wasn't modified by filter):\n";
-    for (SortedList<int>::const_iterator i = list.begin(); i != list.end(); ++i)
+    for (SortedList<int>::const_iterator i = list.begin(); !(i == list.end()); ++i)
     {
         cout << (*i) << " ";
     }
@@ -69,7 +67,7 @@ int main()
     SortedList<int>::const_iterator iterator = even_list.begin();
     ++iterator;
     even_list.remove(iterator);
-    for (SortedList<int>::const_iterator i = even_list.begin(); i != even_list.end(); ++i)
+    for (SortedList<int>::const_iterator i = even_list.begin(); !(i == even_list.end()); ++i)
     {
         cout << (*i) << " ";
     }
@@ -79,7 +77,7 @@ int main()
     iterator = even_list.begin();
     ++iterator;
     even_list.remove(iterator);
-    for (SortedList<int>::const_iterator i = even_list.begin(); i != even_list.end(); ++i)
+    for (SortedList<int>::const_iterator i = even_list.begin(); !(i == even_list.end()); ++i)
     {
         cout << (*i) << " ";
     }
@@ -88,7 +86,7 @@ int main()
     cout << "\neven_list after incrementing all elements by 1:\n";
     SortedList<int> even_list_incremented = even_list.apply(increment);
     for (SortedList<int>::const_iterator i = even_list_incremented.begin();
-        i != even_list_incremented.end();
+        !(i == even_list_incremented.end());
         ++i)
     {
         cout << (*i) << " ";

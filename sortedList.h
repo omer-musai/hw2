@@ -15,16 +15,13 @@ class SortedList
         };
 
         Node* list;
-
         Node* findPreviousElementPosition(const T element) const;
+
     public:
-        SortedList(); 
-        ~SortedList();
+        SortedList();
         SortedList(const SortedList& list);
+        ~SortedList();
         SortedList& operator=(const SortedList& list);
-        void insert(const T element);
-        
-        int length() const;
 
         template<class C>
         SortedList filter(C condition);
@@ -32,13 +29,15 @@ class SortedList
         template<class A>
         SortedList apply(A action);
 
-
         class const_iterator;
-
         const_iterator begin() const;
-        const_iterator end() const;   
+        const_iterator end() const;
 
-        void remove(const_iterator& iterator);
+        void remove(const const_iterator &iterator);
+        void insert(const T element);
+        int length() const;
+
+
 
 };
 
@@ -50,18 +49,18 @@ class SortedList<T>::const_iterator
     private:
         Node* current;
         
-        //user doesn't have access to the standard constructor  NOT SURE IF WE ASKED TO IMPLEMENT OR JUST USE THE "const_iterator();"
-        const_iterator(Node* current);
+        //user doesn't have access to the standard constructor
+        explicit const_iterator(Node* current);
         friend class SortedList;
+        bool operator!=(const const_iterator& iterator) const; //Sadly this isn't part of the interface.
     public:
         const_iterator() = delete;
         const_iterator(const const_iterator& iterator);
         const_iterator& operator=(const const_iterator& iterator);
         ~const_iterator() = default;
         void operator++(); //throw out_of_range if iterator points to end of list
-        bool operator==(const const_iterator& iterator);
-        bool operator!=(const const_iterator& iterator);
-        const T& operator*();
+        bool operator==(const const_iterator& iterator) const;
+        const T& operator*() const;
 };
        
 
@@ -122,7 +121,7 @@ void SortedList<T>::insert(const T element)
 
 
 template<class T>
-void SortedList<T>::remove(const_iterator& iterator)
+void SortedList<T>::remove(const const_iterator& iterator)
 {
     if(iterator == end())
     {
@@ -216,19 +215,19 @@ void SortedList<T>::const_iterator::operator++()
 }                
 
 template<class T>             
-bool SortedList<T>::const_iterator::operator==(const const_iterator& iterator)
+bool SortedList<T>::const_iterator::operator==(const const_iterator& iterator) const
 {
     return (this->current == iterator.current);
 }
 
 template<class T>
-bool SortedList<T>::const_iterator::operator!=(const const_iterator& iterator)
+bool SortedList<T>::const_iterator::operator!=(const const_iterator& iterator) const
 {
     return !(this->operator==(iterator));
 }
 
 template<class T>
-const T& SortedList<T>::const_iterator::operator*()
+const T& SortedList<T>::const_iterator::operator*() const
 {
     return current->data;
 }
