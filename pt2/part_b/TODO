@@ -1,0 +1,14 @@
+Concepts & ideas:
+1. Characters are "blind" (in the sense that only the Game class has knowledge of the board)
+
+
+
+
+Methods:
+- Game:
+    Contains a vector of characters, each of which contains its own position.
+
+- Character:
+    attack (likely pure virtual because every inheriting class implements it differently, I think?)
+    private:
+        contain a gridpoint
