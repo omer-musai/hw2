@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/ShayH/OneDrive/Documents/Course Things/semester 2/IntToSysProg/hw/hw2/repo/hw2/main.cpp
+iostream
+-
+sortedList.h
+/mnt/c/Users/ShayH/OneDrive/Documents/Course Things/semester 2/IntToSysProg/hw/hw2/repo/hw2/sortedList.h
+
+/mnt/c/Users/ShayH/OneDrive/Documents/Course Things/semester 2/IntToSysProg/hw/hw2/repo/hw2/sortedList.h
+stdexcept
+-
+
