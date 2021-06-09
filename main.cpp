@@ -4,6 +4,9 @@ using std::endl;
 
 #include "sortedList.h"
 
+using mtm::SortedList;
+
+
 inline bool isEven(int value)
 {
     return !(value % 2);
@@ -13,7 +16,7 @@ inline int increment(int value)
 {
     return value + 1;
 }
-/*
+
 int main()
 {
     //Attempt to destroy an empty list:
@@ -95,7 +98,7 @@ int main()
 
     return 0;
 }
-*/
+/*
 using std::string;
 string getLen(string str)
 {
@@ -108,6 +111,7 @@ void printList(SortedList<T> list) {
     }
     cout << endl;
 }
+
 int main()
 {
     SortedList<string> lst1 = SortedList<string>();
@@ -125,4 +129,4 @@ int main()
     lst2.remove(it);
     printList(lst2);
     return 0;
-}
+}*/
