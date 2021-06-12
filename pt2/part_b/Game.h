@@ -1,15 +1,27 @@
+#include <iostream>
+#include <memory>
+#include <vector>
+
 #include "Character.h"
+#include "Auxiliaries.h"
+#include "Board.h"
+
 
 namespace mtm
 {
     class Game
     {
+        private:
+            std::vector<std::shared_ptr<Character>> characters;
+            Board board;
+            
         public:
+            Game() = delete;
             Game(int height, int width);
-            Game(const& Game other);
+            Game(const Game& other) = default;
 
-            Game& operator=(const Game& other);
-            std::ostream& operator<<();
+            Game& operator=(const Game& other) = default;
+            friend std::ostream& operator<<(std::ostream& stream, Game& game);
 
             ~Game() = default;
 
@@ -26,10 +38,5 @@ namespace mtm
             void reload(const GridPoint & coordinates);
 
             bool isOver(Team* winningTeam=NULL) const;
-
-
-
-    }
+    };
 }
-
-
