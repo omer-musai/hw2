@@ -13,14 +13,15 @@ namespace mtm
         private:
             int health;
             int ammo;
-            Team team;
+            
             GridPoint position;
         protected:
             const int range;
             const int power;
-
+            const Team team;
             void increaseAmmo(int by);
             void decreaseAmmo();
+            
             Character(int health, int ammo, int range, int power, const Team& team, const GridPoint& position);
         public:
             /*
@@ -31,12 +32,14 @@ namespace mtm
                 character.takeDamage(handler.calculateDamage(character));
             }
             */
-
+            void decreaseHitPoints(int by);
             void setPosition(const GridPoint& point);
             const GridPoint& getPosition() const;
             int getPower() const;
-            virtual void attack(const GridPoint& target) const = 0;
+            Team getTeam() const;
+            virtual void attack(const GridPoint& target, Character& character_in_dst) const = 0;
             virtual void reload() = 0;
+            virtual void dealDamage(Character& character, const GridPoint& target) = 0;
     };
 }
 

@@ -16,9 +16,14 @@ namespace mtm
         return this->power;
     }
 
+    Team Character::getTeam() const
+    {
+        return this->team;
+    }
+
     void Character::increaseAmmo(int by)
     {
-
+        this->ammo += by;
     }
 
     void Character::decreaseAmmo()
@@ -29,5 +34,10 @@ namespace mtm
         }
 
         --ammo;
+    }
+
+    void Character::decreaseHitPoints(int by)
+    {
+        this->health -= by;
     }
 }

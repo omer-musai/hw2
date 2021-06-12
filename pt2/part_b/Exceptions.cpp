@@ -32,4 +32,9 @@ namespace mtm
     OutOfAmmo::OutOfAmmo() :
         Exception("OutOfAmmo")
     {}
+
+    IllegalTarget::IllegalTarget() :
+        Exception("IllegalTarget")
+    {}
+
 }

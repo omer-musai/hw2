@@ -54,6 +54,13 @@ namespace mtm
         public:
             OutOfAmmo();
     };
+
+    class IllegalTarget : Exception
+    {   
+        public:
+            IllegalTarget();
+
+    };
 }
 
 #endif //MTM_EXCEPTIONS_H

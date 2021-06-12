@@ -3,6 +3,10 @@
 
 #include "Character.h"
 
+#define FACTOR_OF_IMPACT 2
+#define FACTOR_OF_DISTANCE 3
+#define SOLDIER_MAGAZINE 3
+
 namespace mtm
 {
     class Soldier : Character
@@ -15,7 +19,8 @@ namespace mtm
             
             void reload();
             void validateTargetInRange(const GridPoint& target);
-            void attack(const GridPoint& target);
+            void attack(const GridPoint& target, Character& character_in_dst);
+            void dealDamage(Character& character, const GridPoint& target);
     };
 
 }

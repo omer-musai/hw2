@@ -25,7 +25,11 @@ namespace mtm
     {
         board.ensurePointOnBoard(src_coordinates);
         Character &character = board.getCharacterInPoint(src_coordinates, this->characters);
-        character.attack(dst_coordinates);
+
+        
+        character.attack(dst_coordinates, board.getCharacterInPoint(dst_coordinates, this->characters));
+       
+       
         for (std::shared_ptr<Character> characterPtr : characters)
         {
             character.dealDamage(*characterPtr, dst_coordinates);
