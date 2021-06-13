@@ -5,7 +5,7 @@ namespace mtm
     Soldier::Soldier(int health, int ammo, int range, int power, const Team& team, const GridPoint& position)
         : Character(health, ammo, range, power, team, position){}
     
-    void Soldier::attack(const GridPoint& target, Character& character_in_dst)
+    void Soldier::attack(const GridPoint& target, const Character& character_in_dst)
     {  
         validateTargetInRange(target);
         decreaseAmmo();
@@ -13,7 +13,7 @@ namespace mtm
 
     void Soldier::reload()
     {
-        increaseAmmo(SOLDIER_MAGAZINE);
+        increaseAmmo(Soldier::MAGAZINE_SIZE);
     }
 
     void Soldier::validateTargetInRange(const GridPoint& target)
@@ -46,5 +46,15 @@ namespace mtm
             character.decreaseHitPoints(ceil(damage / FACTOR_OF_IMPACT));
         }
     }
-    
+
+    void Soldier::move(const GridPoint & dst_coordinates)
+    {
+        if(GridPoint::distance(getPosition(), dst_coordinates) > SOLDIER_MOVEMENT)
+        {
+            throw MoveTooFar();
+        }
+
+        setPosition(dst_coordinates);
+    }
+
 }

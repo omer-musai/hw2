@@ -6,6 +6,28 @@
 #include <memory>
 #include <cmath> //For abs only. Consider replacing with an inline or something.
 
+/*
+       .---.
+  ___ /_____\
+ /\.-`( '.' )
+/ /    \_-_/_
+\ `-.-"`'V'//-.
+ `.__,   |// , \
+     |Ll //Ll|\ \
+     |__//   | \_\
+    /---|[]==| / /
+    \__/ |   \/\/
+    /_   | Ll_\|
+     |`^"""^`|
+     |   |   |
+     |   |   |
+     |   |   |
+     |   |   |
+     L___l___J
+      |_ | _|
+     (___|___)
+*/
+
 namespace mtm
 {
     class Character
@@ -24,22 +46,18 @@ namespace mtm
             
             Character(int health, int ammo, int range, int power, const Team& team, const GridPoint& position);
         public:
-            /*
-            Soldier& soldier = characters[0]*;
-            AttackHandler& handler = soldier.attack(point);
-            for(Character character : characters)
-            {
-                character.takeDamage(handler.calculateDamage(character));
-            }
-            */
+           
+            void heal(int by);
             void decreaseHitPoints(int by);
             void setPosition(const GridPoint& point);
             const GridPoint& getPosition() const;
             int getPower() const;
             Team getTeam() const;
-            virtual void attack(const GridPoint& target, Character& character_in_dst) const = 0;
+            virtual void attack(const GridPoint& target, const Character& character_in_dst) const = 0;
             virtual void reload() = 0;
             virtual void dealDamage(Character& character, const GridPoint& target) = 0;
+            virtual void move(const GridPoint & dst_coordinates) = 0;
+            int getHealth() const;
     };
 }
 

@@ -59,7 +59,12 @@ namespace mtm
     {   
         public:
             IllegalTarget();
+    };
 
+    class MoveTooFar : Exception
+    {
+        public:
+            MoveTooFar();
     };
 }
 

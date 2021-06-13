@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <algorithm>
 
 #include "Character.h"
 #include "Auxiliaries.h"
@@ -14,12 +15,13 @@ namespace mtm
         private:
             std::vector<std::shared_ptr<Character>> characters;
             Board board;
+            bool isDead(const Character& character) const;
             
         public:
             Game() = delete;
             Game(int height, int width);
             Game(const Game& other) = default;
-
+            
             Game& operator=(const Game& other) = default;
             friend std::ostream& operator<<(std::ostream& stream, Game& game);
 

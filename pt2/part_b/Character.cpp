@@ -40,4 +40,14 @@ namespace mtm
     {
         this->health -= by;
     }
+
+    int Character::getHealth() const
+    {
+        return this->health;
+    }
+
+    void Character::heal(int by)
+    {
+        this->health += by;
+    }
 }

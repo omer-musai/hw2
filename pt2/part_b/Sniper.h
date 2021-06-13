@@ -3,15 +3,28 @@
 
 #include "Character.h"
 
-#define DISTANCE_FACTOR 2
-#define SNIPER_MAGAZINE 2
-#define IMPACT_FACTOR 2
-
+/*
+  \
+ /                                 />
+ \__+_____________________/\/\___/ /|
+ ()______________________      / /|/\
+             /0 0  ---- |----    /---\
+            |0 o 0 ----|| - \ --|      \
+             \0_0/____/ |    |  |\      \
+                         \__/__/  |      \
+Bang! Bang!                       |       \
+                                  |         \
+                                  |__________|
+*/
 namespace mtm
 {
     class Sniper : Character
     {
         private:
+            static const int DISTANCE_FACTOR = 2;
+            static const int IMPACT_FACTOR = 2;
+            static const int MAGAZINE_SIZE = 2;
+            static const int SNIPER_MOVEMENT = 4;
             int shot_counter;
 
         public:
@@ -19,8 +32,9 @@ namespace mtm
             
             void reload();
             void validateTargetInRange(const GridPoint& target);
-            void attack(const GridPoint& target, Character& character_in_dst);
+            void attack(const GridPoint& target, const Character& character_in_dst);
             void dealDamage(Character& character, const GridPoint& target);
+            void move(const GridPoint & dst_coordinates);
     };
 
 }

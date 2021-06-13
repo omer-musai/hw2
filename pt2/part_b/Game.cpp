@@ -17,7 +17,7 @@ namespace mtm
     {
         board.ensureAvailablePoint(dst_coordinates, this->characters);
         Character &character = board.getCharacterInPoint(src_coordinates, this->characters);
-        character.setPosition(dst_coordinates);
+        character.move(dst_coordinates);
     }
 
 
@@ -34,6 +34,8 @@ namespace mtm
         {
             character.dealDamage(*characterPtr, dst_coordinates);
         }
+        
+        std::remove_if(characters.begin(), characters.end(), isDead);
     }
 
     void Game::reload(const GridPoint& coordinates)
@@ -44,6 +46,38 @@ namespace mtm
 
     bool Game::isOver(Team* winningTeam=NULL) const
     {
-        
+        bool powerliftersRemain = false, crossfittersRemain = false;
+        for (const std::shared_ptr<Character>& character : characters)
+        {
+            if (character->getTeam() == Team::POWERLIFTERS)
+            {
+                powerliftersRemain = true;
+            }
+            else
+            {
+                crossfittersRemain = true;
+            }
+
+            if (powerliftersRemain && crossfittersRemain)
+            {
+                return false;
+            }
+        }
+
+        if (!powerliftersRemain || !crossfittersRemain)
+        {
+            if (winningTeam != NULL)
+            {
+                (*winningTeam) = powerliftersRemain ? Team::POWERLIFTERS : Team::CROSSFITTERS;
+            }
+            return true;
+        }
+
+        return false;
+    }
+    
+    bool Game::isDead(const Character& character) const
+    {
+        return (character.getHealth() <= 0);
     }
 }

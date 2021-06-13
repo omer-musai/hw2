@@ -37,4 +37,7 @@ namespace mtm
         Exception("IllegalTarget")
     {}
 
+    MoveTooFar::MoveTooFar() :
+        Exception("MoveTooFar")
+    {}
 }

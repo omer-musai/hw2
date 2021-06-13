@@ -8,7 +8,7 @@ namespace mtm
             shot_counter = 0;
         }
     
-    void Sniper::attack(const GridPoint& target, Character& character_in_dst)
+    void Sniper::attack(const GridPoint& target, const Character& character_in_dst)
     {  
         validateTargetInRange(target);
 
@@ -22,22 +22,26 @@ namespace mtm
 
     void Sniper::reload()
     {
-        increaseAmmo(SNIPER_MAGAZINE);
+        increaseAmmo(Sniper::MAGAZINE_SIZE);
     }
 
     void Sniper::validateTargetInRange(const GridPoint& target)
     {
-       const GridPoint& position = getPosition();
-       int distance =  GridPoint::distance(position, target);
+       int distance = GridPoint::distance(getPosition(), target);
 
-       if( distance < ceil(range / DISTANCE_FACTOR) || distance > this->range)
+       if(distance < ceil(range / DISTANCE_FACTOR) || distance > this->range)
        {
            throw OutOfRange();
        }
     }
     
     void Sniper::dealDamage(Character& character, const GridPoint& target)
-    {   
+    {
+        if (!(character.getPosition() == target))
+        {
+            return;
+        }
+
         int damage = this->power;
         if(shot_counter == 3)
         {
@@ -51,5 +55,16 @@ namespace mtm
         }
         
     }
+
+    void Sniper::move(const GridPoint & dst_coordinates)
+    {
+        if(GridPoint::distance(getPosition(), dst_coordinates) > SNIPER_MOVEMENT)
+        {
+            throw MoveTooFar();
+        }
+
+        setPosition(dst_coordinates);
+    }
+
     
 }
