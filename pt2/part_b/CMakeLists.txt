@@ -11,6 +11,6 @@ set(MTM_FLAGS_RELEASE "${MTM_FLAGS_DEBUG} -DNDEBUG")
 set(CMAKE_CPP_FLAGS ${MTM_FLAGS_DEBUG})
 
 # Add the names of your source files here
-set(CPP_FILES Exceptions.cpp main.cpp Auxiliaries.cpp Character.cpp Game.cpp Medic.cpp Sniper.cpp Soldier.cpp Board.cpp)
+set(CPP_FILES Exceptions.cpp gameTest.cpp Character.cpp Game.cpp Medic.cpp Sniper.cpp Soldier.cpp Board.cpp Auxiliaries.cpp)
 
 add_executable(hw2pt2 ${CPP_FILES})

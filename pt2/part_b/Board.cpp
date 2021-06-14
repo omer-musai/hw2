@@ -72,4 +72,28 @@ namespace mtm
     {
         return getCharacterIfExists(point, characters) != nullptr;
     }
+
+    std::string Board::generateBoardString(const std::vector<std::shared_ptr<Character>> characters) const
+    {
+        std::string boardString;
+
+        for (int row = 0; row < row_count; ++row)
+        {
+            for (int column = 0; column < column_count; ++column)
+            {
+                std::shared_ptr<Character> character
+                    = getCharacterIfExists(GridPoint(row, column), characters);
+                if (character == nullptr)
+                {
+                    boardString += BOARD_STRING_NO_CHARACTER;
+                }
+                else
+                {
+                    boardString += character->getStringSymbol();
+                }
+            }
+        }
+
+        return boardString;
+    }
 }

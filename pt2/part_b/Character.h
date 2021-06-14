@@ -58,6 +58,7 @@ namespace mtm
             virtual void dealDamage(Character& character, const GridPoint& target) = 0;
             virtual void move(const GridPoint & dst_coordinates) = 0;
             int getHealth() const;
+            virtual char getStringSymbol() const = 0;
     };
 }
 

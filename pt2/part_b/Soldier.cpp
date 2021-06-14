@@ -57,4 +57,8 @@ namespace mtm
         setPosition(dst_coordinates);
     }
 
+    char Soldier::getStringSymbol() const
+    {
+        return team == POWERLIFTERS ? 'S' : 's';
+    }
 }

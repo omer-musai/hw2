@@ -66,5 +66,10 @@ namespace mtm
         setPosition(dst_coordinates);
     }
 
-    
+    char Sniper::getStringSymbol() const
+    {
+        return team == POWERLIFTERS ? 'N' : 'n';
+    }
+
+
 }

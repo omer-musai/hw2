@@ -103,6 +103,10 @@ namespace mtm
     }
 
     std::ostream &operator<<(std::ostream &stream, const Game &game) {
+        std::string boardString = game.board.generateBoardString(game.characters);
+        const char* boardCString = boardString.c_str();
+        printGameBoard(stream, boardCString,
+          boardCString + boardString.length(), game.board.column_count);
         return stream;
     }
 }

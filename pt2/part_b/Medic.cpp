@@ -66,4 +66,9 @@ namespace mtm
 
         setPosition(dst_coordinates);
     }
+
+    char Medic::getStringSymbol() const
+    {
+        return team == POWERLIFTERS ? 'M' : 'm';
+    }
 }
