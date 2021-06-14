@@ -28,7 +28,7 @@ namespace mtm
             
             void reload() override;
             void validateTargetInRange(const GridPoint& target) override;
-            void attack(const GridPoint& target, const Character& character_in_dst) override;
+            void attack(const GridPoint& target, const std::shared_ptr<Character> character_in_dst) override;
             void dealDamage(Character& character, const GridPoint& target) override;
             void move(const GridPoint & dst_coordinates) override;
     };

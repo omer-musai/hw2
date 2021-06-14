@@ -7,12 +7,12 @@ namespace mtm
         {
             shot_counter = 0;
         }
-    
-    void Sniper::attack(const GridPoint& target, const Character& character_in_dst)
+
+    void Sniper::attack(const GridPoint& target, const std::shared_ptr<Character> character_in_dst)
     {  
         validateTargetInRange(target);
 
-        if( !(character_in_dst.getPosition() == target) || character_in_dst.getTeam() == this->team)
+        if( !(character_in_dst->getPosition() == target) || character_in_dst->getTeam() == this->team)
         {
             throw IllegalTarget();
         }

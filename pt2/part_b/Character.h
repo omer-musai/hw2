@@ -53,7 +53,7 @@ namespace mtm
             void setPosition(const GridPoint& point);
             const GridPoint& getPosition() const;
             Team getTeam() const;
-            virtual void attack(const GridPoint& target, const Character& character_in_dst) = 0;
+            virtual void attack(const GridPoint& target, const std::shared_ptr<Character> character_in_dst) = 0;
             virtual void reload() = 0;
             virtual void dealDamage(Character& character, const GridPoint& target) = 0;
             virtual void move(const GridPoint & dst_coordinates) = 0;

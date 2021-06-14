@@ -4,17 +4,17 @@ namespace mtm
 {
     Medic::Medic(int health, int ammo, int range, int power, const Team& team)
         : Character(health, ammo, range, power, team){}
-        
-    
-    void Medic::attack(const GridPoint& target, const Character& character_in_dst)
+
+
+    void Medic::attack(const GridPoint& target, const std::shared_ptr<Character> character_in_dst)
     {
         validateTargetInRange(target);
 
-        if( !(character_in_dst.getPosition() == target))
+        if( !(character_in_dst->getPosition() == target))
         {
             throw IllegalTarget();
         }
-        else if(character_in_dst.getTeam() != this->team)
+        else if(character_in_dst->getTeam() != this->team)
         {
             decreaseAmmo();
             return;

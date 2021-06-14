@@ -33,11 +33,11 @@ namespace mtm
         public:
             Medic(int health, int ammo, int range, int power, const Team& team);
             
-            void reload();
-            void validateTargetInRange(const GridPoint& target);
-            void attack(const GridPoint& target, const Character& character_in_dst);
-            void dealDamage(Character& character, const GridPoint& target);
-            void move(const GridPoint & dst_coordinates);
+            void reload() override;
+            void validateTargetInRange(const GridPoint& target) override;
+            void attack(const GridPoint& target, const std::shared_ptr<Character> character_in_dst) override;
+            void dealDamage(Character& character, const GridPoint& target) override;
+            void move(const GridPoint & dst_coordinates) override;
     };
 
 }

@@ -27,7 +27,7 @@ namespace mtm
         Character &character = board.getCharacterInPoint(src_coordinates, this->characters);
 
         
-        character.attack(dst_coordinates, board.getCharacterInPoint(dst_coordinates, this->characters));
+        character.attack(dst_coordinates, board.getCharacterIfExists(dst_coordinates, this->characters));
        
        
         for (std::shared_ptr<Character> &characterPtr : characters)

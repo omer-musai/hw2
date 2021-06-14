@@ -4,8 +4,8 @@ namespace mtm
 {
     Soldier::Soldier(int health, int ammo, int range, int power, const Team& team)
         : Character(health, ammo, range, power, team){}
-    
-    void Soldier::attack(const GridPoint& target, const Character& character_in_dst)
+
+    void Soldier::attack(const GridPoint& target, const std::shared_ptr<Character> character_in_dst)
     {
         validateTargetInRange(target);
         decreaseAmmo();

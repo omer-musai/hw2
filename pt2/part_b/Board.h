@@ -13,13 +13,14 @@ namespace mtm
     {
         public:
             Board() = delete;
-            Board(const Board& other) = delete;
+            Board(const Board& other) = default;
 
             Board(int column_count, int row_count);
 
             void ensureAvailablePoint(const GridPoint& point, const std::vector<std::shared_ptr<Character>> &characters) const;
             void ensurePointOnBoard(const GridPoint& point) const;
             Character& getCharacterInPoint(const GridPoint& point, std::vector<std::shared_ptr<Character>> &characters) const;
+        std::shared_ptr<Character> getCharacterIfExists(const GridPoint& point, const std::vector<std::shared_ptr<Character>> &characters) const;
             
             //The following two methods will throw exceptions to signal illegal actions.
             /*void attack(Character& attacker, const GridPoint& target) const;
@@ -31,7 +32,6 @@ namespace mtm
             static bool isLegalPoint(const GridPoint& point);
             bool isOnBoard(const GridPoint& point) const;
             bool isOccupied(const GridPoint& point, const std::vector<std::shared_ptr<Character>> &characters) const;
-            std::shared_ptr<Character> getCharacterIfExists(const GridPoint& point, const std::vector<std::shared_ptr<Character>> &characters) const;
     };
 }
 
