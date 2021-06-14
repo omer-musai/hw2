@@ -6,7 +6,7 @@
 
 namespace mtm
 {
-    class Exception : std::exception
+    class Exception : public std::exception
     {
         public:
             Exception() = delete;
@@ -19,49 +19,49 @@ namespace mtm
             std::string error_type;
     };
 
-    class IllegalArgument : Exception
+    class IllegalArgument : public Exception
     {
         public:
             IllegalArgument();
     };
 
-    class IllegalCell : Exception
+    class IllegalCell : public Exception
     {
         public:
             IllegalCell();
     };
 
-    class CellEmpty : Exception
+    class CellEmpty : public Exception
     {
         public:
             CellEmpty();
     };
 
-    class CellOccupied : Exception
+    class CellOccupied : public Exception
     {
         public:
             CellOccupied();
     };
 
-    class OutOfRange : Exception
+    class OutOfRange : public Exception
     {
         public:
             OutOfRange();
     };
 
-    class OutOfAmmo : Exception
+    class OutOfAmmo : public Exception
     {
         public:
             OutOfAmmo();
     };
 
-    class IllegalTarget : Exception
+    class IllegalTarget : public Exception
     {   
         public:
             IllegalTarget();
     };
 
-    class MoveTooFar : Exception
+    class MoveTooFar : public Exception
     {
         public:
             MoveTooFar();
