@@ -49,7 +49,7 @@ namespace mtm
 
     void Soldier::move(const GridPoint & dst_coordinates)
     {
-        if(GridPoint::distance(getPosition(), dst_coordinates) > SOLDIER_MOVEMENT)
+        if(GridPoint::distance(getPosition(), dst_coordinates) > MOVEMENT)
         {
             throw MoveTooFar();
         }

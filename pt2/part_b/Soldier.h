@@ -21,7 +21,7 @@ namespace mtm
             static const int IMPACT_FACTOR = 2;
             static const int DISTANCE_FACTOR = 3;
             static const int MAGAZINE_SIZE = 3;
-            static const int SOLDIER_MOVEMENT = 3;
+            static const int MOVEMENT = 3;
 
         public:
             Soldier(int health, int ammo, int range, int power, const Team& team);

@@ -48,7 +48,7 @@ namespace mtm
         }
 
         int damage = this->power;
-        if(shot_counter == 3)
+        if(shot_counter == Sniper::COMBO_FOR_BONUS - 1)
         {
             character.decreaseHitPoints(damage * IMPACT_FACTOR);
             shot_counter = 0;
@@ -63,7 +63,7 @@ namespace mtm
 
     void Sniper::move(const GridPoint & dst_coordinates)
     {
-        if(GridPoint::distance(getPosition(), dst_coordinates) > SNIPER_MOVEMENT)
+        if(GridPoint::distance(getPosition(), dst_coordinates) > MOVEMENT)
         {
             throw MoveTooFar();
         }

@@ -27,7 +27,7 @@ namespace mtm
     {
         private:
             static const int MAGAZINE_SIZE = 5;
-            static const int MEDIC_MOVEMENT = 5;
+            static const int MOVEMENT = 5;
             
 
         public:

@@ -24,7 +24,8 @@ namespace mtm
             static const int DISTANCE_FACTOR = 2;
             static const int IMPACT_FACTOR = 2;
             static const int MAGAZINE_SIZE = 2;
-            static const int SNIPER_MOVEMENT = 4;
+            static const int MOVEMENT = 4;
+            static const int COMBO_FOR_BONUS = 3;
             int shot_counter;
 
         public:

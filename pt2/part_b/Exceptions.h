@@ -17,6 +17,7 @@ namespace mtm
             const char* what() const noexcept override;
         private:
             std::string error_type;
+            std::string error_message;
     };
 
     class IllegalArgument : public Exception

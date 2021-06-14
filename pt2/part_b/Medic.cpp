@@ -64,7 +64,7 @@ namespace mtm
 
     void Medic::move(const GridPoint & dst_coordinates)
     {
-        if(GridPoint::distance(getPosition(), dst_coordinates) > MEDIC_MOVEMENT)
+        if(GridPoint::distance(getPosition(), dst_coordinates) > MOVEMENT)
         {
             throw MoveTooFar();
         }
