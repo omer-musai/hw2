@@ -9,7 +9,12 @@ namespace mtm
         }
 
     void Sniper::attack(const GridPoint& target, const std::shared_ptr<Character> character_in_dst)
-    {  
+    {
+        if (character_in_dst == nullptr)
+        {
+            throw CellEmpty();
+        }
+
         validateTargetInRange(target);
 
         if( !(character_in_dst->getPosition() == target) || character_in_dst->getTeam() == this->team)
