@@ -4,7 +4,10 @@
 #include "Auxiliaries.h"
 #include "Exceptions.h"
 #include <memory>
-#include <cmath> //For abs only. Consider replacing with an inline or something.
+
+#include "Medic.h"
+#include "Soldier.h"
+#include "Sniper.h"
 
 /*
        .---.
@@ -38,26 +41,30 @@ namespace mtm
             
             GridPoint position;
         protected:
+            static const GridPoint NO_POSITION;
             const int range;
             const int power;
             const Team team;
             void increaseAmmo(int by);
             void decreaseAmmo();
+            virtual void validateTargetInRange(const GridPoint& target) = 0;
             
-            Character(int health, int ammo, int range, int power, const Team& team, const GridPoint& position);
+            Character(int health, int ammo, int range, int power, const Team& team,
+                      const GridPoint& position = NO_POSITION);
         public:
-           
             void heal(int by);
             void decreaseHitPoints(int by);
             void setPosition(const GridPoint& point);
             const GridPoint& getPosition() const;
-            int getPower() const;
             Team getTeam() const;
-            virtual void attack(const GridPoint& target, const Character& character_in_dst) const = 0;
+            virtual void attack(const GridPoint& target, const Character& character_in_dst) = 0;
             virtual void reload() = 0;
             virtual void dealDamage(Character& character, const GridPoint& target) = 0;
             virtual void move(const GridPoint & dst_coordinates) = 0;
             int getHealth() const;
+
+            /*static std::shared_ptr<Character> createCharacter(CharacterType type, Team team,
+                                                       units_t health, units_t ammo, units_t range, units_t power);*/
     };
 }
 

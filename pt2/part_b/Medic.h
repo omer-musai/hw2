@@ -23,7 +23,7 @@
 */
 namespace mtm
 {
-    class Medic : Character
+    class Medic : public Character
     {
         private:
             static const int MAGAZINE_SIZE = 5;

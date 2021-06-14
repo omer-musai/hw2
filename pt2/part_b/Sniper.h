@@ -18,7 +18,7 @@ Bang! Bang!                       |       \
 */
 namespace mtm
 {
-    class Sniper : Character
+    class Sniper : public Character
     {
         private:
             static const int DISTANCE_FACTOR = 2;
@@ -28,7 +28,7 @@ namespace mtm
             int shot_counter;
 
         public:
-            Sniper(int health, int ammo, int range, int power, const Team& team, const GridPoint& position, int shot_counter);
+            Sniper(int health, int ammo, int range, int power, const Team& team, const GridPoint& position);
             
             void reload();
             void validateTargetInRange(const GridPoint& target);

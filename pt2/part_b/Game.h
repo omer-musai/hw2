@@ -15,7 +15,7 @@ namespace mtm
         private:
             std::vector<std::shared_ptr<Character>> characters;
             Board board;
-            bool isDead(const Character& character) const;
+            static bool isDead(const std::shared_ptr<Character>& character);
             
         public:
             Game() = delete;

@@ -41,7 +41,7 @@ namespace mtm
 
     std::shared_ptr<Character> Board::getCharacterIfExists(const GridPoint& point, const std::vector<std::shared_ptr<Character>> &characters) const
     {
-        if (!isOnBoard)
+        if (!isOnBoard(point))
         {
             return nullptr;
         }

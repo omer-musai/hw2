@@ -3,9 +3,6 @@
 
 #include "Character.h"
 
-#define FACTOR_OF_IMPACT 2
-#define FACTOR_OF_DISTANCE 3
-#define SOLDIER_MAGAZINE 3
 
 /*
  ,______________________________________       
@@ -18,7 +15,7 @@
 
 namespace mtm
 {
-    class Soldier : Character
+    class Soldier : public Character
     {
         private:
             static const int IMPACT_FACTOR = 2;
@@ -29,11 +26,11 @@ namespace mtm
         public:
             Soldier(int health, int ammo, int range, int power, const Team& team, const GridPoint& position);
             
-            void reload();
-            void validateTargetInRange(const GridPoint& target);
-            void attack(const GridPoint& target, const Character& character_in_dst);
-            void dealDamage(Character& character, const GridPoint& target);
-            void move(const GridPoint & dst_coordinates);
+            void reload() override;
+            void validateTargetInRange(const GridPoint& target) override;
+            void attack(const GridPoint& target, const Character& character_in_dst) override;
+            void dealDamage(Character& character, const GridPoint& target) override;
+            void move(const GridPoint & dst_coordinates) override;
     };
 
 }

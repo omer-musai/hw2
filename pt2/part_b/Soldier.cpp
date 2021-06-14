@@ -41,9 +41,9 @@ namespace mtm
         {
             character.decreaseHitPoints(damage);
         }
-        else if(GridPoint::distance(position, target) <= ceil(this->range / FACTOR_OF_DISTANCE))
+        else if(GridPoint::distance(position, target) <= ceil(this->range / Soldier::DISTANCE_FACTOR))
         {
-            character.decreaseHitPoints(ceil(damage / FACTOR_OF_IMPACT));
+            character.decreaseHitPoints(ceil(damage / Soldier::IMPACT_FACTOR));
         }
     }
 

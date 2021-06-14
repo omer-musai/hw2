@@ -2,6 +2,7 @@
 
 namespace mtm
 {
+    const GridPoint Character::NO_POSITION = GridPoint(-1, -1);
     void Character::setPosition(const GridPoint& point)
     {
         position = point;
@@ -9,11 +10,6 @@ namespace mtm
     const GridPoint& Character::getPosition() const
     {
         return position;
-    }
-
-    int Character::getPower() const
-    {
-        return this->power;
     }
 
     Team Character::getTeam() const
@@ -50,4 +46,8 @@ namespace mtm
     {
         this->health += by;
     }
+
+    Character::Character(int health, int ammo, int range, int power, const Team &team, const GridPoint& position)
+        : health(health), ammo(ammo), range(range), power(power), team(team), position(position)
+    {}
 }

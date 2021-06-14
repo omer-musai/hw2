@@ -30,12 +30,14 @@ namespace mtm
         character.attack(dst_coordinates, board.getCharacterInPoint(dst_coordinates, this->characters));
        
        
-        for (std::shared_ptr<Character> characterPtr : characters)
+        for (std::shared_ptr<Character> &characterPtr : characters)
         {
             character.dealDamage(*characterPtr, dst_coordinates);
         }
         
-        std::remove_if(characters.begin(), characters.end(), isDead);
+        std::vector<std::shared_ptr<Character>>::iterator new_end =
+                std::remove_if(characters.begin(), characters.end(), Game::isDead);
+        characters.erase(new_end, characters.end());
     }
 
     void Game::reload(const GridPoint& coordinates)
@@ -44,7 +46,7 @@ namespace mtm
         character.reload();
     }
 
-    bool Game::isOver(Team* winningTeam=NULL) const
+    bool Game::isOver(Team* winningTeam) const
     {
         bool powerliftersRemain = false, crossfittersRemain = false;
         for (const std::shared_ptr<Character>& character : characters)
@@ -75,9 +77,23 @@ namespace mtm
 
         return false;
     }
-    
-    bool Game::isDead(const Character& character) const
+
+    std::shared_ptr<Character> Game::makeCharacter(CharacterType type, Team team, units_t health, units_t ammo, units_t range, units_t power) {
+        std::shared_ptr<Character> ptr = nullptr;
+        Character* character;
+        if (type == SOLDIER)
+        {
+        }
+        else if (type == MEDIC)
+        {
+        }
+        else //type == SNIPER
+        {
+        }
+    }
+
+    bool isDead(const std::shared_ptr<Character>& character)
     {
-        return (character.getHealth() <= 0);
+        return (character->getHealth() <= 0);
     }
 }

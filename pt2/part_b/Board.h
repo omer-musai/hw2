@@ -19,7 +19,7 @@ namespace mtm
 
             void ensureAvailablePoint(const GridPoint& point, const std::vector<std::shared_ptr<Character>> &characters) const;
             void ensurePointOnBoard(const GridPoint& point) const;
-            Character& Board::getCharacterInPoint(const GridPoint& point, std::vector<std::shared_ptr<Character>> &characters) const;
+            Character& getCharacterInPoint(const GridPoint& point, std::vector<std::shared_ptr<Character>> &characters) const;
             
             //The following two methods will throw exceptions to signal illegal actions.
             /*void attack(Character& attacker, const GridPoint& target) const;
