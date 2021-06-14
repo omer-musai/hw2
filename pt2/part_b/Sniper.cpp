@@ -2,8 +2,8 @@
 
 namespace mtm
 {
-    Sniper::Sniper(int health, int ammo, int range, int power, const Team& team, const GridPoint& position)
-        : Character(health, ammo, range, power, team, position)
+    Sniper::Sniper(int health, int ammo, int range, int power, const Team& team)
+        : Character(health, ammo, range, power, team)
         {
             shot_counter = 0;
         }

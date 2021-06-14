@@ -2,11 +2,11 @@
 
 namespace mtm
 {
-    Soldier::Soldier(int health, int ammo, int range, int power, const Team& team, const GridPoint& position)
-        : Character(health, ammo, range, power, team, position){}
+    Soldier::Soldier(int health, int ammo, int range, int power, const Team& team)
+        : Character(health, ammo, range, power, team){}
     
     void Soldier::attack(const GridPoint& target, const Character& character_in_dst)
-    {  
+    {
         validateTargetInRange(target);
         decreaseAmmo();
     }

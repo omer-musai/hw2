@@ -28,7 +28,7 @@ namespace mtm
             int shot_counter;
 
         public:
-            Sniper(int health, int ammo, int range, int power, const Team& team, const GridPoint& position);
+            Sniper(int health, int ammo, int range, int power, const Team& team);
             
             void reload();
             void validateTargetInRange(const GridPoint& target);

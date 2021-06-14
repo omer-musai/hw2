@@ -24,7 +24,7 @@ namespace mtm
             static const int SOLDIER_MOVEMENT = 3;
 
         public:
-            Soldier(int health, int ammo, int range, int power, const Team& team, const GridPoint& position);
+            Soldier(int health, int ammo, int range, int power, const Team& team);
             
             void reload() override;
             void validateTargetInRange(const GridPoint& target) override;

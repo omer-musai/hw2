@@ -2,12 +2,12 @@
 
 namespace mtm
 {
-    Medic::Medic(int health, int ammo, int range, int power, const Team& team, const GridPoint& position)
-        : Character(health, ammo, range, power, team, position){}
+    Medic::Medic(int health, int ammo, int range, int power, const Team& team)
+        : Character(health, ammo, range, power, team){}
         
     
     void Medic::attack(const GridPoint& target, const Character& character_in_dst)
-    {  
+    {
         validateTargetInRange(target);
 
         if( !(character_in_dst.getPosition() == target))

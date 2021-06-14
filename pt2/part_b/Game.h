@@ -3,7 +3,9 @@
 #include <vector>
 #include <algorithm>
 
-#include "Character.h"
+#include "Soldier.h"
+#include "Sniper.h"
+#include "Medic.h"
 #include "Auxiliaries.h"
 #include "Board.h"
 
@@ -23,7 +25,7 @@ namespace mtm
             Game(const Game& other) = default;
             
             Game& operator=(const Game& other) = default;
-            friend std::ostream& operator<<(std::ostream& stream, Game& game);
+            friend std::ostream& operator<<(std::ostream& stream, const Game& game);
 
             ~Game() = default;
 

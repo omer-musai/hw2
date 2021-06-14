@@ -80,20 +80,29 @@ namespace mtm
 
     std::shared_ptr<Character> Game::makeCharacter(CharacterType type, Team team, units_t health, units_t ammo, units_t range, units_t power) {
         std::shared_ptr<Character> ptr = nullptr;
-        Character* character;
+
         if (type == SOLDIER)
         {
+            ptr = std::shared_ptr<Character>(new Soldier(health, ammo, range, power, team));
         }
         else if (type == MEDIC)
         {
+            ptr = std::shared_ptr<Character>(new Medic(health, ammo, range, power, team));
         }
         else //type == SNIPER
         {
+            ptr = std::shared_ptr<Character>(new Sniper(health, ammo, range, power, team));
         }
+
+        return ptr;
     }
 
-    bool isDead(const std::shared_ptr<Character>& character)
+    bool Game::isDead(const std::shared_ptr<Character>& character)
     {
         return (character->getHealth() <= 0);
+    }
+
+    std::ostream &operator<<(std::ostream &stream, const Game &game) {
+        return stream;
     }
 }

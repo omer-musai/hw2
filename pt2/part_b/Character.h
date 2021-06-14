@@ -5,10 +5,6 @@
 #include "Exceptions.h"
 #include <memory>
 
-#include "Medic.h"
-#include "Soldier.h"
-#include "Sniper.h"
-
 /*
        .---.
   ___ /_____\
@@ -62,9 +58,6 @@ namespace mtm
             virtual void dealDamage(Character& character, const GridPoint& target) = 0;
             virtual void move(const GridPoint & dst_coordinates) = 0;
             int getHealth() const;
-
-            /*static std::shared_ptr<Character> createCharacter(CharacterType type, Team team,
-                                                       units_t health, units_t ammo, units_t range, units_t power);*/
     };
 }
 
