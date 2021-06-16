@@ -22,7 +22,7 @@ namespace mtm
         public:
             Game() = delete;
             Game(int height, int width);
-            Game(const Game& other) = default;
+            Game(const Game& other);
             
             Game& operator=(const Game& other) = default;
             friend std::ostream& operator<<(std::ostream& stream, const Game& game);

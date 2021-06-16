@@ -76,5 +76,8 @@ namespace mtm
         return team == POWERLIFTERS ? 'N' : 'n';
     }
 
-
+    std::shared_ptr<Character> Sniper::clone() const
+    {
+        return std::shared_ptr<Character>(new Sniper(*this));
+    }
 }

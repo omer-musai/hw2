@@ -6,6 +6,15 @@ namespace mtm
         characters(), board(row, col)
     {}
 
+    Game::Game(const Game& other) :
+        characters(), board(other.board)
+    {
+        for(std::shared_ptr<Character> characterPtr : other.characters)
+        {
+            characters.push_back(characterPtr->clone());
+        }
+    }
+
     void Game::addCharacter(const GridPoint& coordinates, std::shared_ptr<Character> character)
     {
         board.ensureAvailablePoint(coordinates, characters);

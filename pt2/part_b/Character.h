@@ -59,6 +59,7 @@ namespace mtm
             virtual void move(const GridPoint& dst_coordinates) = 0;
             units_t getHealth() const;
             virtual char getStringSymbol() const = 0;
+            virtual std::shared_ptr<Character> clone() const = 0;
     };
 }
 

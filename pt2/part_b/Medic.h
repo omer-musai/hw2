@@ -39,6 +39,8 @@ namespace mtm
             void dealDamage(Character& character, const GridPoint& target) override;
             void move(const GridPoint& dst_coordinates) override;
             char getStringSymbol() const override;
+
+            virtual std::shared_ptr<Character> clone() const override;
     };
 
 }

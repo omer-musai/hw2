@@ -12,3 +12,9 @@ Methods:
     attack (likely pure virtual because every inheriting class implements it differently, I think?)
     private:
         contain a gridpoint
+
+
+
+
+If something is constant, just move it to public.
+Else, consider if protected, private, or a public getter/setter.
