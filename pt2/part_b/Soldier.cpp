@@ -2,7 +2,7 @@
 
 namespace mtm
 {
-    Soldier::Soldier(int health, int ammo, int range, int power, const Team& team)
+    Soldier::Soldier(units_t health, units_t ammo, units_t range, units_t power, const Team& team)
         : Character(health, ammo, range, power, team){}
 
     void Soldier::attack(const GridPoint& target, const std::shared_ptr<Character> character_in_dst)
@@ -34,7 +34,7 @@ namespace mtm
             return;
         }
 
-        int damage = this->power;
+        units_t damage = this->power;
         const GridPoint& position = getPosition();
        
         if(position == target)
@@ -47,7 +47,7 @@ namespace mtm
         }
     }
 
-    void Soldier::move(const GridPoint & dst_coordinates)
+    void Soldier::move(const GridPoint& dst_coordinates)
     {
         if(GridPoint::distance(getPosition(), dst_coordinates) > MOVEMENT)
         {

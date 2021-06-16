@@ -2,7 +2,7 @@
 
 namespace mtm
 {
-    Medic::Medic(int health, int ammo, int range, int power, const Team& team)
+    Medic::Medic(units_t health, units_t ammo, units_t range, units_t power, const Team& team)
         : Character(health, ammo, range, power, team){}
 
 
@@ -33,7 +33,7 @@ namespace mtm
 
     void Medic::validateTargetInRange(const GridPoint& target)
     {
-       int distance = GridPoint::distance(getPosition(), target);
+       units_t distance = GridPoint::distance(getPosition(), target);
 
        if(distance == 0)
        {
@@ -62,7 +62,7 @@ namespace mtm
         }   
     }
 
-    void Medic::move(const GridPoint & dst_coordinates)
+    void Medic::move(const GridPoint& dst_coordinates)
     {
         if(GridPoint::distance(getPosition(), dst_coordinates) > MOVEMENT)
         {

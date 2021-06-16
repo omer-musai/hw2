@@ -2,7 +2,7 @@
 
 namespace mtm
 {
-    Sniper::Sniper(int health, int ammo, int range, int power, const Team& team)
+    Sniper::Sniper(units_t health, units_t ammo, units_t range, units_t power, const Team& team)
         : Character(health, ammo, range, power, team)
         {
             shot_counter = 0;
@@ -32,7 +32,7 @@ namespace mtm
 
     void Sniper::validateTargetInRange(const GridPoint& target)
     {
-       int distance = GridPoint::distance(getPosition(), target);
+       units_t distance = GridPoint::distance(getPosition(), target);
 
        if(distance < ceil(range / DISTANCE_FACTOR) || distance > this->range)
        {
@@ -47,7 +47,7 @@ namespace mtm
             return;
         }
 
-        int damage = this->power;
+        units_t damage = this->power;
         if(shot_counter == Sniper::COMBO_FOR_BONUS - 1)
         {
             character.decreaseHitPoints(damage * IMPACT_FACTOR);
@@ -56,12 +56,12 @@ namespace mtm
         else
         {
             character.decreaseHitPoints(damage);
-            shot_counter++;
+            ++shot_counter;
         }
         
     }
 
-    void Sniper::move(const GridPoint & dst_coordinates)
+    void Sniper::move(const GridPoint& dst_coordinates)
     {
         if(GridPoint::distance(getPosition(), dst_coordinates) > MOVEMENT)
         {

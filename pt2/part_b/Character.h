@@ -32,32 +32,32 @@ namespace mtm
     class Character
     {
         private:
-            int health;
-            int ammo;
+            units_t health;
+            units_t ammo;
             
             GridPoint position;
         protected:
             static const GridPoint NO_POSITION;
-            const int range;
-            const int power;
+            const units_t range;
+            const units_t power;
             const Team team;
-            void increaseAmmo(int by);
+            void increaseAmmo(units_t by);
             void decreaseAmmo();
             virtual void validateTargetInRange(const GridPoint& target) = 0;
             
-            Character(int health, int ammo, int range, int power, const Team& team,
+            Character(units_t health, units_t ammo, units_t range, units_t power, const Team& team,
                       const GridPoint& position = NO_POSITION);
         public:
-            void heal(int by);
-            void decreaseHitPoints(int by);
+            void heal(units_t by);
+            void decreaseHitPoints(units_t by);
             void setPosition(const GridPoint& point);
             const GridPoint& getPosition() const;
             Team getTeam() const;
             virtual void attack(const GridPoint& target, const std::shared_ptr<Character> character_in_dst) = 0;
             virtual void reload() = 0;
             virtual void dealDamage(Character& character, const GridPoint& target) = 0;
-            virtual void move(const GridPoint & dst_coordinates) = 0;
-            int getHealth() const;
+            virtual void move(const GridPoint& dst_coordinates) = 0;
+            units_t getHealth() const;
             virtual char getStringSymbol() const = 0;
     };
 }

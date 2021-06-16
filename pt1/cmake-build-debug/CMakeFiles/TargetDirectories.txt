@@ -1,3 +1,0 @@
-/mnt/c/Users/ShayH/OneDrive/Documents/Course Things/semester 2/IntToSysProg/hw/hw2/repo/hw2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/ShayH/OneDrive/Documents/Course Things/semester 2/IntToSysProg/hw/hw2/repo/hw2/cmake-build-debug/CMakeFiles/edit_cache.dir
-/mnt/c/Users/ShayH/OneDrive/Documents/Course Things/semester 2/IntToSysProg/hw/hw2/repo/hw2/cmake-build-debug/CMakeFiles/test.dir

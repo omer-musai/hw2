@@ -17,7 +17,7 @@ namespace mtm
         return this->team;
     }
 
-    void Character::increaseAmmo(int by)
+    void Character::increaseAmmo(units_t by)
     {
         this->ammo += by;
     }
@@ -32,22 +32,22 @@ namespace mtm
         --ammo;
     }
 
-    void Character::decreaseHitPoints(int by)
+    void Character::decreaseHitPoints(units_t by)
     {
         this->health -= by;
     }
 
-    int Character::getHealth() const
+    units_t Character::getHealth() const
     {
         return this->health;
     }
 
-    void Character::heal(int by)
+    void Character::heal(units_t by)
     {
         this->health += by;
     }
 
-    Character::Character(int health, int ammo, int range, int power, const Team &team, const GridPoint& position)
+    Character::Character(units_t health, units_t ammo, units_t range, units_t power, const Team &team, const GridPoint& position)
         : health(health), ammo(ammo), range(range), power(power), team(team), position(position)
     {}
 }

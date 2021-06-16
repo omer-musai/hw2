@@ -1,1 +1,0 @@
-/usr/bin/c++  -g  -rdynamic CMakeFiles/exe_name.dir/examDetails.cpp.o CMakeFiles/exe_name.dir/part_a_test.cpp.o  -o exe_name 
