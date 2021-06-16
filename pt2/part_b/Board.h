@@ -16,8 +16,8 @@ namespace mtm
             Board(const Board& other) = default;
 
             Board(int row_count, int column_count);
-            const int column_count;
             const int row_count;
+            const int column_count;
 
         std::string generateBoardString(const std::vector<std::shared_ptr<Character>>& characters) const;
 

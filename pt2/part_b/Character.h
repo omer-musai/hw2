@@ -34,13 +34,13 @@ namespace mtm
         private:
             units_t health;
             units_t ammo;
+            const units_t range;
+            const units_t power;
+            const Team team;
             
             GridPoint position;
         protected:
             static const GridPoint NO_POSITION;
-            const units_t range;
-            const units_t power;
-            const Team team;
             void increaseAmmo(units_t by);
             void decreaseAmmo();
             virtual void validateTargetInRange(const GridPoint& target) = 0;
@@ -51,15 +51,22 @@ namespace mtm
             void heal(units_t by);
             void decreaseHitPoints(units_t by);
             void setPosition(const GridPoint& point);
+
             const GridPoint& getPosition() const;
-            Team getTeam() const;
+
             virtual void attack(const GridPoint& target, const std::shared_ptr<Character> character_in_dst) = 0;
             virtual void reload() = 0;
             virtual void dealDamage(Character& character, const GridPoint& target) = 0;
             virtual void move(const GridPoint& dst_coordinates) = 0;
-            units_t getHealth() const;
             virtual char getStringSymbol() const = 0;
             virtual std::shared_ptr<Character> clone() const = 0;
+
+            
+            units_t getHealth() const;
+            Team getTeam() const;
+            
+
+            
     };
 }
 

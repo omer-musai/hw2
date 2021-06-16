@@ -52,13 +52,13 @@ namespace mtm
         {
             return;
         }
-        else if(character.getTeam() == this->team)
+        else if(character.getTeam() == this->getTeam())
         {
-            character.heal(this->power);
+            character.heal(this->getPower());
         }
         else
         {
-            character.decreaseHitPoints(this->power);
+            character.decreaseHitPoints(this->getPower());
         }   
     }
 
