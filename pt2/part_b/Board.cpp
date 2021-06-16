@@ -2,16 +2,18 @@
 
 namespace mtm
 {
-    Board::Board(int column_count, int row_count)
-        : column_count(column_count), row_count(row_count)
+    Board::Board(int row_count, int column_count)
+        : row_count(row_count), column_count(column_count)
     {}
 
     void Board::ensurePointOnBoard(const GridPoint& point) const
     {
-        if (!isLegalPoint(point))
+       /* if (!isLegalPoint(point))
         {
             throw IllegalArgument();
         }
+         */
+
         if (!isOnBoard(point))
         {
             throw IllegalCell();

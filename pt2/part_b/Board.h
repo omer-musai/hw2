@@ -15,7 +15,7 @@ namespace mtm
             Board() = delete;
             Board(const Board& other) = default;
 
-            Board(int column_count, int row_count);
+            Board(int row_count, int column_count);
             const int column_count;
             const int row_count;
 

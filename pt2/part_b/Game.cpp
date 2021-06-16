@@ -51,6 +51,7 @@ namespace mtm
 
     void Game::reload(const GridPoint& coordinates)
     {
+        board.ensurePointOnBoard(coordinates);
         Character &character = board.getCharacterInPoint(coordinates, characters);
         character.reload();
     }
