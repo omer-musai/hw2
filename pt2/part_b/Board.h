@@ -19,7 +19,7 @@ namespace mtm
             const int column_count;
             const int row_count;
 
-        std::string generateBoardString(const std::vector<std::shared_ptr<Character>> characters) const;
+        std::string generateBoardString(const std::vector<std::shared_ptr<Character>>& characters) const;
 
             void ensureAvailablePoint(const GridPoint& point, const std::vector<std::shared_ptr<Character>> &characters) const;
             void ensurePointOnBoard(const GridPoint& point) const;
@@ -32,7 +32,6 @@ namespace mtm
             void addCharacter(Character& character, const GridPoint& point) const;*/
         private:
             static const char BOARD_STRING_NO_CHARACTER = ' ';
-            static bool isLegalPoint(const GridPoint& point);
             bool isOnBoard(const GridPoint& point) const;
             bool isOccupied(const GridPoint& point, const std::vector<std::shared_ptr<Character>> &characters) const;
     };

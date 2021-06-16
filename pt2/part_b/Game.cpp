@@ -88,7 +88,13 @@ namespace mtm
         return false;
     }
 
-    std::shared_ptr<Character> Game::makeCharacter(CharacterType type, Team team, units_t health, units_t ammo, units_t range, units_t power) {
+    std::shared_ptr<Character> Game::makeCharacter(CharacterType type, Team team, units_t health, units_t ammo, units_t range, units_t power) 
+    {
+        if(health <= 0 || ammo < 0 || range < 0 || power < 0 || (team != POWERLIFTERS && team != CROSSFITTERS))
+        {
+            throw IllegalArgument();
+        }
+        
         std::shared_ptr<Character> ptr = nullptr;
 
         if (type == SOLDIER)
@@ -99,9 +105,13 @@ namespace mtm
         {
             ptr = std::shared_ptr<Character>(new Medic(health, ammo, range, power, team));
         }
-        else //type == SNIPER
+        else if (type == SNIPER)
         {
             ptr = std::shared_ptr<Character>(new Sniper(health, ammo, range, power, team));
+        }
+        else
+        {
+            throw IllegalArgument();
         }
 
         return ptr;

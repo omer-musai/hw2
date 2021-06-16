@@ -8,12 +8,6 @@ namespace mtm
 
     void Board::ensurePointOnBoard(const GridPoint& point) const
     {
-       /* if (!isLegalPoint(point))
-        {
-            throw IllegalArgument();
-        }
-         */
-
         if (!isOnBoard(point))
         {
             throw IllegalCell();
@@ -30,14 +24,9 @@ namespace mtm
         }
     }
 
-    bool Board::isLegalPoint(const GridPoint& point)
-    {
-        return point.col >= 0 && point.row >= 0;
-    }
-
     bool Board::isOnBoard(const GridPoint& point) const
     {
-        return (isLegalPoint(point)
+        return (point.col >= 0 && point.row >= 0
             && point.col < column_count && point.row < row_count);
     }
 
@@ -75,7 +64,7 @@ namespace mtm
         return getCharacterIfExists(point, characters) != nullptr;
     }
 
-    std::string Board::generateBoardString(const std::vector<std::shared_ptr<Character>> characters) const
+    std::string Board::generateBoardString(const std::vector<std::shared_ptr<Character>>& characters) const
     {
         std::string boardString;
 
