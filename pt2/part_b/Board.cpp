@@ -4,7 +4,12 @@ namespace mtm
 {
     Board::Board(int row_count, int column_count)
         : row_count(row_count), column_count(column_count)
-    {}
+    {
+        if(row_count < 0 || column_count < 0)
+        {
+            throw IllegalArgument();
+        }
+    }
 
     void Board::ensurePointOnBoard(const GridPoint& point) const
     {

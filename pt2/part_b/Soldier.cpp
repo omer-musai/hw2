@@ -21,7 +21,7 @@ namespace mtm
        const GridPoint& position = getPosition();
 
        if((target.row != position.row && target.col != position.col)
-            || GridPoint::distance(position, target) > this->range)
+            || GridPoint::distance(position, target) > this->getRange())
        {
            throw OutOfRange();
        }
@@ -29,19 +29,19 @@ namespace mtm
     
     void Soldier::dealDamage(Character& character, const GridPoint& target)
     {   
-        if(character.getTeam() == this->team)
+        if(character.getTeam() == this->getTeam())
         {
             return;
         }
 
-        units_t damage = this->power;
+        units_t damage = this->getPower();
         const GridPoint& position = getPosition();
        
         if(position == target)
         {
             character.decreaseHitPoints(damage);
         }
-        else if(GridPoint::distance(position, target) <= ceil(this->range / Soldier::DISTANCE_FACTOR))
+        else if(GridPoint::distance(position, target) <= ceil(this->getRange() / Soldier::DISTANCE_FACTOR))
         {
             character.decreaseHitPoints(ceil(damage / Soldier::IMPACT_FACTOR));
         }
@@ -59,7 +59,7 @@ namespace mtm
 
     char Soldier::getStringSymbol() const
     {
-        return team == POWERLIFTERS ? 'S' : 's';
+        return getTeam() == POWERLIFTERS ? 'S' : 's';
     }
 
      std::shared_ptr<Character> Soldier::clone() const

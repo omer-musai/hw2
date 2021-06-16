@@ -11,6 +11,12 @@ namespace mtm
 {
     class Board
     {
+
+          private:
+            static const char BOARD_STRING_NO_CHARACTER = ' ';
+            bool isOnBoard(const GridPoint& point) const;
+            bool isOccupied(const GridPoint& point, const std::vector<std::shared_ptr<Character>> &characters) const;
+            
         public:
             Board() = delete;
             Board(const Board& other) = default;
@@ -30,10 +36,7 @@ namespace mtm
             /*void attack(Character& attacker, const GridPoint& target) const;
             void move(Character& mover, const GridPoint& target) const;
             void addCharacter(Character& character, const GridPoint& point) const;*/
-        private:
-            static const char BOARD_STRING_NO_CHARACTER = ' ';
-            bool isOnBoard(const GridPoint& point) const;
-            bool isOccupied(const GridPoint& point, const std::vector<std::shared_ptr<Character>> &characters) const;
+      
     };
 }
 

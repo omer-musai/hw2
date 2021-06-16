@@ -19,7 +19,7 @@ namespace mtm
         {
             throw IllegalTarget();
         }
-        else if(character_in_dst->getTeam() != this->team)
+        else if(character_in_dst->getTeam() != this->getTeam())
         {
             decreaseAmmo();
             return;
@@ -40,7 +40,7 @@ namespace mtm
            throw IllegalTarget();
        }
 
-       else if(distance > this->range)
+       else if(distance > this->getRange())
        {
            throw OutOfRange();
        }
@@ -74,7 +74,7 @@ namespace mtm
 
     char Medic::getStringSymbol() const
     {
-        return team == POWERLIFTERS ? 'M' : 'm';
+        return getTeam() == POWERLIFTERS ? 'M' : 'm';
     }
 
      std::shared_ptr<Character> Medic::clone() const

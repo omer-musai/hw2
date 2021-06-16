@@ -17,7 +17,7 @@ namespace mtm
 
         validateTargetInRange(target);
 
-        if( !(character_in_dst->getPosition() == target) || character_in_dst->getTeam() == this->team)
+        if( !(character_in_dst->getPosition() == target) || character_in_dst->getTeam() == this->getTeam())
         {
             throw IllegalTarget();
         }
@@ -34,7 +34,7 @@ namespace mtm
     {
        units_t distance = GridPoint::distance(getPosition(), target);
 
-       if(distance < ceil(range / DISTANCE_FACTOR) || distance > this->range)
+       if(distance < ceil(getRange() / DISTANCE_FACTOR) || distance > this->getRange())
        {
            throw OutOfRange();
        }
@@ -47,7 +47,7 @@ namespace mtm
             return;
         }
 
-        units_t damage = this->power;
+        units_t damage = this->getPower();
         if(shot_counter == Sniper::COMBO_FOR_BONUS - 1)
         {
             character.decreaseHitPoints(damage * IMPACT_FACTOR);
@@ -73,7 +73,7 @@ namespace mtm
 
     char Sniper::getStringSymbol() const
     {
-        return team == POWERLIFTERS ? 'N' : 'n';
+        return getTeam() == POWERLIFTERS ? 'N' : 'n';
     }
 
     std::shared_ptr<Character> Sniper::clone() const
