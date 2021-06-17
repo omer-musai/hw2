@@ -35,15 +35,15 @@ namespace mtm
         }
 
         units_t damage = this->getPower();
-        const GridPoint& position = getPosition();
+        const GridPoint& position = character.getPosition();
        
         if(position == target)
         {
             character.decreaseHitPoints(damage);
         }
-        else if(GridPoint::distance(position, target) <= ceil(this->getRange() / Soldier::DISTANCE_FACTOR))
+        else if(GridPoint::distance(position, target) <= ceil((double)this->getRange() / Soldier::DISTANCE_FACTOR))
         {
-            character.decreaseHitPoints(ceil(damage / Soldier::IMPACT_FACTOR));
+            character.decreaseHitPoints(ceil((double)damage / Soldier::IMPACT_FACTOR));
         }
     }
 

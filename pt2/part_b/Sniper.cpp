@@ -34,7 +34,7 @@ namespace mtm
     {
        units_t distance = GridPoint::distance(getPosition(), target);
 
-       if(distance < ceil(getRange() / DISTANCE_FACTOR) || distance > this->getRange())
+       if(distance < ceil((double)getRange() / DISTANCE_FACTOR) || distance > this->getRange())
        {
            throw OutOfRange();
        }
