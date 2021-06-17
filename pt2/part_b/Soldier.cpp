@@ -20,10 +20,14 @@ namespace mtm
     {
        const GridPoint& position = getPosition();
 
-       if((target.row != position.row && target.col != position.col)
-            || GridPoint::distance(position, target) > this->getRange())
+       if(GridPoint::distance(position, target) > this->getRange())
        {
            throw OutOfRange();
+       }
+
+       if (target.row != position.row && target.col != position.col)
+       {
+           throw IllegalTarget();
        }
     }
     
