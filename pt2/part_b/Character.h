@@ -49,12 +49,15 @@ namespace mtm
             units_t getRange() const;
             units_t getPower() const;
 
+            virtual int getMovement() const = 0;
+
             Character(units_t health, units_t ammo, units_t range, units_t power, const Team& team,
                       const GridPoint& position = NO_POSITION);
         public:
             void heal(units_t by);
             void decreaseHitPoints(units_t by);
             void setPosition(const GridPoint& point);
+            void ensureInMovementRange(const GridPoint& point) const;
 
             virtual void attack(const GridPoint& target, const std::shared_ptr<Character> character_in_dst) = 0;
             virtual void reload() = 0;

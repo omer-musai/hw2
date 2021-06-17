@@ -8,22 +8,23 @@ namespace mtm
 
     void Medic::attack(const GridPoint& target, const std::shared_ptr<Character> character_in_dst)
     {
-        if (character_in_dst == nullptr)
-        {
-            throw CellEmpty();
-        }
-
         validateTargetInRange(target);
 
-        if( !(character_in_dst->getPosition() == target))
+        if (character_in_dst == nullptr)
         {
+            if (this->getAmmo() <= 0)
+            {
+                throw OutOfAmmo();
+            }
+
             throw IllegalTarget();
         }
-        else if(character_in_dst->getTeam() != this->getTeam())
+
+        if(character_in_dst->getTeam() != this->getTeam())
         {
             decreaseAmmo();
             return;
-        }  
+        }
     }
 
     void Medic::reload()
@@ -64,10 +65,7 @@ namespace mtm
 
     void Medic::move(const GridPoint& dst_coordinates)
     {
-        if(GridPoint::distance(getPosition(), dst_coordinates) > MOVEMENT)
-        {
-            throw MoveTooFar();
-        }
+        ensureInMovementRange(dst_coordinates);
 
         setPosition(dst_coordinates);
     }
@@ -80,5 +78,10 @@ namespace mtm
      std::shared_ptr<Character> Medic::clone() const
     {
         return std::shared_ptr<Character>(new Medic(*this));
+    }
+
+    int Medic::getMovement() const
+    {
+        return MOVEMENT;
     }
 }

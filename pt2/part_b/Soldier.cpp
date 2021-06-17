@@ -49,10 +49,7 @@ namespace mtm
 
     void Soldier::move(const GridPoint& dst_coordinates)
     {
-        if(GridPoint::distance(getPosition(), dst_coordinates) > MOVEMENT)
-        {
-            throw MoveTooFar();
-        }
+        ensureInMovementRange(dst_coordinates);
 
         setPosition(dst_coordinates);
     }
@@ -65,5 +62,10 @@ namespace mtm
      std::shared_ptr<Character> Soldier::clone() const
     {
         return std::shared_ptr<Character>(new Soldier(*this));
+    }
+
+    int Soldier::getMovement() const
+    {
+        return MOVEMENT;
     }
 }

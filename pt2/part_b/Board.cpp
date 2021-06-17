@@ -5,7 +5,7 @@ namespace mtm
     Board::Board(int row_count, int column_count)
         : row_count(row_count), column_count(column_count)
     {
-        if(row_count < 0 || column_count < 0)
+        if(row_count <= 0 || column_count <= 0)
         {
             throw IllegalArgument();
         }
@@ -91,5 +91,15 @@ namespace mtm
         }
 
         return boardString;
+    }
+
+    int Board::getRowCount() const
+    {
+        return row_count;
+    }
+
+    int Board::getColumnCount() const
+    {
+        return column_count;
     }
 }

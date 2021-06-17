@@ -22,6 +22,7 @@ namespace mtm
             return *this;
         }
 
+        this->board = other.board;
         this->characters = std::vector<std::shared_ptr<Character>>();
         for(const std::shared_ptr<Character>& characterPtr : other.characters)
         {
@@ -40,8 +41,15 @@ namespace mtm
 
     void Game::move(const GridPoint& src_coordinates, const GridPoint& dst_coordinates)
     {
-        board.ensureAvailablePoint(dst_coordinates, this->characters);
+        board.ensurePointOnBoard(src_coordinates);
+        board.ensurePointOnBoard(dst_coordinates);
+
         Character &character = board.getCharacterInPoint(src_coordinates, this->characters);
+
+        character.ensureInMovementRange(dst_coordinates);
+
+        board.ensureAvailablePoint(dst_coordinates, this->characters);
+
         character.move(dst_coordinates);
     }
 
@@ -49,6 +57,7 @@ namespace mtm
     void Game::attack(const GridPoint& src_coordinates, const GridPoint& dst_coordinates)
     {
         board.ensurePointOnBoard(src_coordinates);
+        board.ensurePointOnBoard(dst_coordinates);
         Character &character = board.getCharacterInPoint(src_coordinates, this->characters);
 
         
@@ -74,6 +83,11 @@ namespace mtm
 
     bool Game::isOver(Team* winningTeam) const
     {
+        if (characters.empty())
+        {
+            return false;
+        }
+
         bool powerliftersRemain = false, crossfittersRemain = false;
         for (const std::shared_ptr<Character>& character : characters)
         {
@@ -142,7 +156,7 @@ namespace mtm
         std::string boardString = game.board.generateBoardString(game.characters);
         const char* boardCString = boardString.c_str();
         printGameBoard(stream, boardCString,
-          boardCString + boardString.length(), game.board.column_count);
+          boardCString + boardString.length(), game.board.getColumnCount());
         return stream;
     }
 }

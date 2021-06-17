@@ -22,6 +22,7 @@ namespace mtm
             static const units_t DISTANCE_FACTOR = 3;
             static const units_t MAGAZINE_SIZE = 3;
             static const units_t MOVEMENT = 3;
+            int getMovement() const override;
 
         public:
             Soldier(units_t health, units_t ammo, units_t range, units_t power, const Team& team);

@@ -28,7 +28,7 @@ namespace mtm
         private:
             static const units_t MAGAZINE_SIZE = 5;
             static const units_t MOVEMENT = 5;
-            
+            int getMovement() const override;
 
         public:
             Medic(units_t health, units_t ammo, units_t range, units_t power, const Team& team);

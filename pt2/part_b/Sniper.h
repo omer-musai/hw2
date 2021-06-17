@@ -27,6 +27,7 @@ namespace mtm
             static const units_t MOVEMENT = 4;
             static const int COMBO_FOR_BONUS = 3;
             int shot_counter;
+            int getMovement() const override;
 
         public:
             Sniper(units_t health, units_t ammo, units_t range, units_t power, const Team& team);

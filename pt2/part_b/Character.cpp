@@ -67,4 +67,12 @@ namespace mtm
     {
         return power;
     }
+
+    void Character::ensureInMovementRange(const GridPoint &point) const
+    {
+        if(GridPoint::distance(getPosition(), point) > getMovement())
+        {
+            throw MoveTooFar();
+        }
+    }
 }

@@ -11,19 +11,20 @@ namespace mtm
 {
     class Board
     {
-
           private:
+            int row_count;
+            int column_count;
             static const char BOARD_STRING_NO_CHARACTER = ' ';
             bool isOnBoard(const GridPoint& point) const;
             bool isOccupied(const GridPoint& point, const std::vector<std::shared_ptr<Character>> &characters) const;
-            
         public:
             Board() = delete;
             Board(const Board& other) = default;
 
+            int getRowCount() const;
+            int getColumnCount() const;
+
             Board(int row_count, int column_count);
-            const int row_count;
-            const int column_count;
 
         std::string generateBoardString(const std::vector<std::shared_ptr<Character>>& characters) const;
 

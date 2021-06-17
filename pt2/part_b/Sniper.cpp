@@ -10,14 +10,14 @@ namespace mtm
 
     void Sniper::attack(const GridPoint& target, const std::shared_ptr<Character> character_in_dst)
     {
-        if (character_in_dst == nullptr)
-        {
-            throw CellEmpty();
-        }
-
         validateTargetInRange(target);
 
-        if( !(character_in_dst->getPosition() == target) || character_in_dst->getTeam() == this->getTeam())
+        if (getAmmo() <= 0)
+        {
+            throw OutOfAmmo();
+        }
+
+        if (character_in_dst == nullptr || character_in_dst->getTeam() == this->getTeam())
         {
             throw IllegalTarget();
         }
@@ -63,10 +63,7 @@ namespace mtm
 
     void Sniper::move(const GridPoint& dst_coordinates)
     {
-        if(GridPoint::distance(getPosition(), dst_coordinates) > MOVEMENT)
-        {
-            throw MoveTooFar();
-        }
+        ensureInMovementRange(dst_coordinates);
 
         setPosition(dst_coordinates);
     }
@@ -79,5 +76,10 @@ namespace mtm
     std::shared_ptr<Character> Sniper::clone() const
     {
         return std::shared_ptr<Character>(new Sniper(*this));
+    }
+
+    int Sniper::getMovement() const
+    {
+        return MOVEMENT;
     }
 }
