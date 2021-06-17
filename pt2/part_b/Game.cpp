@@ -9,10 +9,26 @@ namespace mtm
     Game::Game(const Game& other) :
         characters(), board(other.board)
     {
-        for(std::shared_ptr<Character> characterPtr : other.characters)
+        for(const std::shared_ptr<Character>& characterPtr : other.characters)
         {
             characters.push_back(characterPtr->clone());
         }
+    }
+
+    Game& Game::operator=(const Game& other)
+    {
+        if (&other == this)
+        {
+            return *this;
+        }
+
+        this->characters = std::vector<std::shared_ptr<Character>>();
+        for(const std::shared_ptr<Character>& characterPtr : other.characters)
+        {
+            characters.push_back(characterPtr->clone());
+        }
+
+        return *this;
     }
 
     void Game::addCharacter(const GridPoint& coordinates, std::shared_ptr<Character> character)

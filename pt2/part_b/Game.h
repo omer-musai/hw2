@@ -24,7 +24,7 @@ namespace mtm
             Game(int height, int width);
             Game(const Game& other);
             
-            Game& operator=(const Game& other) = default;
+            Game& operator=(const Game& other);
             friend std::ostream& operator<<(std::ostream& stream, const Game& game);
 
             ~Game() = default;
