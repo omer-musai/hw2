@@ -25,6 +25,11 @@ namespace mtm
             decreaseAmmo();
             return;
         }
+
+        if(character_in_dst->getPosition() == getPosition()) //If medic is attempting to heal himself...
+        {
+            throw IllegalTarget();
+        }
     }
 
     void Medic::reload()
