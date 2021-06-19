@@ -17,6 +17,7 @@ namespace mtm
         private:
             std::vector<std::shared_ptr<Character>> characters;
             Board board;
+			//This method will be used with std::remove_if to erase dead characters from the characters vector.
             static bool isDead(const std::shared_ptr<Character>& character);
             
         public:
