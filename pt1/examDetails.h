@@ -1,6 +1,7 @@
 
 #include <string>
 #include <iostream>
+#include <cmath>
 
 #define ROUNDED_HOUR_LIMIT 23
 #define DAYS_IN_MONTH 30
@@ -22,6 +23,7 @@ namespace mtm
             float hour;
             int duration;
             std::string link;
+            static constexpr float EPSILON = 0.000001;
 
         public:
             //constructors

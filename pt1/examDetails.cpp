@@ -7,6 +7,23 @@ namespace mtm
     {
         int rounded_hour = (int)hour;
 
+        if (std::abs(hour - (float)rounded_hour) < EPSILON)
+        {
+            hour = (float)rounded_hour;
+        }
+        else if (std::abs(hour - ((float)rounded_hour + 0.5)) < EPSILON)
+        {
+            hour = (float)rounded_hour + 0.5;
+        }
+        else if (std::abs(hour - (float)rounded_hour + 1) < EPSILON)
+        {
+            hour = (float)rounded_hour + 1;
+        }
+        else
+        {
+            throw InvalidTimeException();
+        }
+
         if(day <= 0 || day > DAYS_IN_MONTH || month < 1 || month > 12)
         {
             throw InvalidDateException();
@@ -75,7 +92,8 @@ namespace mtm
         {
             if(this->day == exam.day)
             {
-                return (this->hour < exam.hour); //return false if equal as required
+                bool equal = std::abs(this->hour - exam.hour) < EPSILON;
+                return (!equal && this->hour < exam.hour);
             }
 
             return (this->day < exam.day);
