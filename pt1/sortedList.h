@@ -17,7 +17,7 @@ namespace mtm
             };
 
             Node* list;
-            Node* findPreviousElementPosition(const T element) const;
+            Node* findPreviousElementPosition(const T& element) const;
 
         public:
             SortedList();
@@ -35,7 +35,7 @@ namespace mtm
             const_iterator begin() const;
             const_iterator end() const;
 
-            void remove(const const_iterator &iterator);
+            void remove(const const_iterator& iterator);
             void insert(const T element);
             int length() const;
 
@@ -238,7 +238,7 @@ namespace mtm
     }
 
     template<class T>
-    typename SortedList<T>::Node* SortedList<T>::findPreviousElementPosition(const T element) const
+    typename SortedList<T>::Node* SortedList<T>::findPreviousElementPosition(const T& element) const
     {
         if (list == nullptr)
         {
