@@ -60,7 +60,7 @@ namespace mtm
             const_iterator(const const_iterator& iterator);
             const_iterator& operator=(const const_iterator& iterator);
             ~const_iterator() = default;
-            void operator++(); //throw out_of_range if iterator points to end of list
+            const_iterator& operator++(); //throw out_of_range if iterator points to end of list
             bool operator==(const const_iterator& iterator) const;
             const T& operator*() const;
     };
@@ -130,7 +130,7 @@ namespace mtm
             throw std::out_of_range("Attempted to remove after reaching the end of the list.");
         }
 
-        Node *previous = findPreviousElementPosition(*iterator);
+        Node *previous = findPreviousElementPosition(*iterator), *toRemove;
         if (previous == nullptr) //First element.
         {
             Node *newHead = list->next;
@@ -138,8 +138,9 @@ namespace mtm
             list = newHead;
             return;
         }
-        previous->next = iterator.current->next;
-        delete iterator.current;
+        toRemove = previous->next;
+        previous->next = previous->next->next;
+        delete toRemove;
     }
 
     template<class T>
@@ -207,13 +208,15 @@ namespace mtm
     }
 
     template<class T>
-    void SortedList<T>::const_iterator::operator++()
+    typename SortedList<T>::const_iterator& SortedList<T>::const_iterator::operator++()
     {
         if(current == nullptr)
         {
             throw std::out_of_range("Reached the end of the list.");
         }
         current = current->next;
+
+        return *this;
     }                
 
     template<class T>             
